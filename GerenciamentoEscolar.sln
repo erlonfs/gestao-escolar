@@ -42,11 +42,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PessoasFisicas.Api", "src\P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PessoasFisicas.Domain.Test", "test\PessoasFisicas\PessoasFisicas.Domain.Test\PessoasFisicas.Domain.Test.csproj", "{74D38721-771B-4045-BCE0-06D7A283F477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funcionarios.Domain.Test", "test\Funcionarios\Funcionarios.Domain.Test\Funcionarios.Domain.Test.csproj", "{CB3C7D2A-2BAE-40C5-9C1D-C56947C81AA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Funcionarios.Domain.Test", "test\Funcionarios\Funcionarios.Domain.Test\Funcionarios.Domain.Test.csproj", "{CB3C7D2A-2BAE-40C5-9C1D-C56947C81AA9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alunos.Domain.Test", "test\Alunos\Alunos.Domain.Test\Alunos.Domain.Test.csproj", "{854FF189-321A-4004-8071-F607303CEE71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Professores.Domain.Test", "test\Professores\Professores.Domain.Test\Professores.Domain.Test.csproj", "{A198116D-95E7-42E7-A0F5-D6026398ABA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Professores.Domain.Test", "test\Professores\Professores.Domain.Test\Professores.Domain.Test.csproj", "{A198116D-95E7-42E7-A0F5-D6026398ABA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alunos.Domain", "src\Alunos\Alunos.Domain\Alunos.Domain.csproj", "{9759EA42-D6EA-457F-A6C1-17EAAB6E2F7B}"
 EndProject
@@ -59,6 +59,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Professores.Domain", "src\Professores\Professores.Domain\Professores.Domain.csproj", "{69CB9A06-6DB4-4DCA-9DDB-62476D6B89D4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Professores.Api", "src\Professores\Professores.Api\Professores.Api.csproj", "{46782F48-39DD-40C0-B4D8-68BF64BEAFE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PessoasFisicas.Infra", "src\PessoasFisicas\PessoasFisicas.Infra\PessoasFisicas.Infra.csproj", "{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PessoasFisicas.Infra.EF", "src\PessoasFisicas\PessoasFisicas.Infra.EF\PessoasFisicas.Infra.EF.csproj", "{9C30BE08-E9C6-438E-9836-2B626EB7843F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PessoasFisicas.Infra.Dapper", "src\PessoasFisicas\PessoasFisicas.Infra.Dapper\PessoasFisicas.Infra.Dapper.csproj", "{0A062C13-207C-4DDF-8274-742CE7F5AAC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +124,18 @@ Global
 		{46782F48-39DD-40C0-B4D8-68BF64BEAFE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46782F48-39DD-40C0-B4D8-68BF64BEAFE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46782F48-39DD-40C0-B4D8-68BF64BEAFE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C30BE08-E9C6-438E-9836-2B626EB7843F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C30BE08-E9C6-438E-9836-2B626EB7843F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C30BE08-E9C6-438E-9836-2B626EB7843F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C30BE08-E9C6-438E-9836-2B626EB7843F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A062C13-207C-4DDF-8274-742CE7F5AAC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A062C13-207C-4DDF-8274-742CE7F5AAC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A062C13-207C-4DDF-8274-742CE7F5AAC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A062C13-207C-4DDF-8274-742CE7F5AAC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -146,6 +164,9 @@ Global
 		{AED32A7B-110A-4F29-8D4C-B6F785419D14} = {94871D0C-DA8C-4EBE-9860-02DCAC02CE54}
 		{69CB9A06-6DB4-4DCA-9DDB-62476D6B89D4} = {BF803462-BFC5-430C-A6AF-5A775EA87440}
 		{46782F48-39DD-40C0-B4D8-68BF64BEAFE4} = {BF803462-BFC5-430C-A6AF-5A775EA87440}
+		{EE9592F2-DF1C-4173-86ED-2B5DE75CEDFB} = {0CF8EBD7-09C6-42BC-8F9E-FA5AC881BA59}
+		{9C30BE08-E9C6-438E-9836-2B626EB7843F} = {0CF8EBD7-09C6-42BC-8F9E-FA5AC881BA59}
+		{0A062C13-207C-4DDF-8274-742CE7F5AAC9} = {0CF8EBD7-09C6-42BC-8F9E-FA5AC881BA59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C29276B6-9F27-494C-A6E0-63F66DB243F8}

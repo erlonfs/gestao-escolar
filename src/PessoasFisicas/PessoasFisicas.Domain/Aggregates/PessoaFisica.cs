@@ -1,5 +1,4 @@
-﻿using PessoasFisicas.Domain.ValueObjects;
-using SharedKernel.Common;
+﻿using SharedKernel.Common;
 using System;
 
 namespace PessoasFisicas.Domain.Aggregates

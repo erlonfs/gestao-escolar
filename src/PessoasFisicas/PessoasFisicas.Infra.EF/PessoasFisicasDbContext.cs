@@ -3,7 +3,7 @@ using PessoasFisicas.Domain.Aggregates;
 using System;
 using System.Linq;
 
-namespace PessoasFisicas.Domain
+namespace PessoasFisicas.Infra.EF
 {
 	public class PessoasFisicasDbContext : DbContext
 	{
@@ -21,7 +21,7 @@ namespace PessoasFisicas.Domain
 		private void AddMappingsDynamically(ModelBuilder modelBuilder)
 		{
 			var currentAssembly = typeof(PessoasFisicasDbContext).Assembly;
-			var mappings = currentAssembly.GetTypes().Where(t => t.FullName.StartsWith("PessoasFisicas.Domain.Mapping.") && t.FullName.EndsWith("Map"));
+			var mappings = currentAssembly.GetTypes().Where(t => t.FullName.StartsWith("PessoasFisicas.Infra.EF.Mapping.") && t.FullName.EndsWith("Map"));
 
 			foreach (var map in mappings.Select(Activator.CreateInstance))
 			{

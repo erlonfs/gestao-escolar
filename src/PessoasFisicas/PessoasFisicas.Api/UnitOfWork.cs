@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PessoasFisicas.Domain;
+using PessoasFisicas.Infra.EF;
 using SharedKernel.Common;
 using System;
 using System.Linq;

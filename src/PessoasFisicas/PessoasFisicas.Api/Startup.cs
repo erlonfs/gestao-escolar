@@ -10,6 +10,9 @@ using PessoasFisicas.Api.Controllers;
 using PessoasFisicas.Domain;
 using PessoasFisicas.Domain.Repositories;
 using PessoasFisicas.Domain.Services;
+using PessoasFisicas.Infra.EF;
+using PessoasFisicas.Infra.EF.Repositories;
+using PessoasFisicas.Infra.EF.Services;
 using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
 

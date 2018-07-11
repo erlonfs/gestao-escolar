@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
+    <PackageReference Include="Dapper" Version="1.50.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
+    <ProjectReference Include="..\PessoasFisicas.Infra\PessoasFisicas.Infra.csproj" />
   </ItemGroup>
 
 </Project>

@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
     <ProjectReference Include="..\PessoasFisicas.Domain\PessoasFisicas.Domain.csproj" />
+    <ProjectReference Include="..\PessoasFisicas.Infra.EF\PessoasFisicas.Infra.EF.csproj" />
   </ItemGroup>
 
 </Project>

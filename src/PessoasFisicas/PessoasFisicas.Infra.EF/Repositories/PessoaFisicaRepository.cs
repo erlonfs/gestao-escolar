@@ -1,6 +1,7 @@
 ﻿using PessoasFisicas.Domain.Aggregates;
+using PessoasFisicas.Domain.Repositories;
 
-namespace PessoasFisicas.Domain.Repositories
+namespace PessoasFisicas.Infra.EF.Repositories
 {
 	public class PessoaFisicaRepository : Repository<PessoaFisica>,  IPessoaFisicaRepository
 	{

@@ -2,8 +2,9 @@
 using PessoasFisicas.Domain.Aggregates;
 using System;
 using System.Threading.Tasks;
+using PessoasFisicas.Domain.Services;
 
-namespace PessoasFisicas.Domain.Services
+namespace PessoasFisicas.Infra.EF.Services
 {
 	public class PessoaFisicaService : IPessoaFisicaService
 	{
