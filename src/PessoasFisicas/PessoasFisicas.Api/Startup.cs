@@ -1,34 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PessoasFisicas.Api;
+using PessoasFisicas.Api.Controllers;
+using PessoasFisicas.Domain;
+using PessoasFisicas.Domain.Repositories;
+using PessoasFisicas.Domain.Services;
+using SharedKernel.Common;
+using Swashbuckle.AspNetCore.Swagger;
 
-namespace PessoasFisicas.Api
+public class Startup
 {
-    public class Startup
-    {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
-        {
-        }
+	public IConfiguration Configuration { get; }
+	public IContainer Container { get; private set; }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+	public Startup(IHostingEnvironment env)
+	{
+		var builder = new ConfigurationBuilder()
+			.SetBasePath(env.ContentRootPath)
+			.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+			.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+			.AddEnvironmentVariables();
+		Configuration = builder.Build();
+	}
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-        }
-    }
+	public void ConfigureServices(IServiceCollection services)
+	{
+		services.AddMvc().AddControllersAsServices();
+
+		services.AddSwaggerGen(c =>
+		{
+			c.SwaggerDoc("v1", new Info { Title = "Pessoas Fisicas API", Version = "v1" });
+			c.DescribeAllEnumsAsStrings();
+		});
+
+		services.AddDbContext<PessoasFisicasDbContext>(options =>
+		{
+			options.UseSqlServer(Configuration.GetConnectionString("AppDatabase"));
+			options.UseLazyLoadingProxies();
+		});
+
+		var builder = new ContainerBuilder();
+
+		builder.Populate(services);
+
+		ConfigureContainer(builder);
+
+		Container = builder.Build();
+
+	}
+
+	public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+	{
+		app.UseMvc();
+		app.UseSwagger();
+		app.UseSwaggerUI(c =>
+		{
+			c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pessoa Física API V1");
+		});
+	}
+
+	public void ConfigureContainer(ContainerBuilder builder)
+	{
+		builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
+		builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+
+		builder.RegisterAssemblyTypes(typeof(Repository<>).Assembly)
+			   .Where(t => t.Name.EndsWith("Repository")).AsImplementedInterfaces();
+
+		builder.RegisterAssemblyTypes(typeof(PessoaFisicaService).Assembly)
+	   .Where(t => t.Name.EndsWith("Service")).AsImplementedInterfaces();
+
+		builder.RegisterType<AppConnectionString>()
+			.AsSelf()
+			.WithParameter(new TypedParameter(typeof(string), Configuration.GetConnectionString("AppDatabase")));
+	}
+
 }
