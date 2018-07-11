@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PessoasFisicas.Domain.Aggregates;
 
-namespace PessoasFisicas.Infra.EF.Mapping
+namespace PessoasFisicas.Infra.EF.Mappings
 {
 	public class PessoaFisicaMap : IEntityTypeConfiguration<PessoaFisica>
 	{

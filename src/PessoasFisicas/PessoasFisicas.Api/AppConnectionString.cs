@@ -1,4 +1,4 @@
-﻿namespace PessoasFisicas.Api
+﻿namespace GerenciamentoEscolar.Api
 {
 	public class AppConnectionString
     {

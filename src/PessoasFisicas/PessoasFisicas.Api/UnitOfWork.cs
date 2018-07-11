@@ -5,26 +5,26 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PessoasFisicas.Api
+namespace GerenciamentoEscolar.Api
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private readonly PessoasFisicasDbContext _appContext;
+		private readonly PessoasFisicasDbContext _dbContext;
 
-		public UnitOfWork(PessoasFisicasDbContext appContext)
+		public UnitOfWork(PessoasFisicasDbContext dbContext)
 		{
-			_appContext = appContext;
+			_dbContext = dbContext;
 		}
 
 		public async Task CommitAsync()
 		{
 			try
 			{
-				using (var transaction = await _appContext.Database.BeginTransactionAsync())
+				using (var transaction = await _dbContext.Database.BeginTransactionAsync())
 				{
 					try
 					{
-						await _appContext.SaveChangesAsync();
+						await _dbContext.SaveChangesAsync();
 
 						transaction.Commit();
 
@@ -46,7 +46,7 @@ namespace PessoasFisicas.Api
 		{
 			try
 			{
-				var changedEntries = _appContext.ChangeTracker.Entries().Where(x => x.State != EntityState.Unchanged).ToList();
+				var changedEntries = _dbContext.ChangeTracker.Entries().Where(x => x.State != EntityState.Unchanged).ToList();
 
 				foreach (var entry in changedEntries)
 				{
