@@ -1,16 +1,14 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using GerenciamentoEscolar.Api;
+using Demo.GerenciamentoEscolar.Api;
+using Demo.GerenciamentoEscolar.Api.Controllers;
+using Demo.GerenciamentoEscolar.Infra.EF;
+using Demo.GerenciamentoEscolar.Infra.EF.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PessoasFisicas.Api;
-using PessoasFisicas.Api.Controllers;
-using PessoasFisicas.Infra.EF;
-using PessoasFisicas.Infra.EF.Repositories;
-using PessoasFisicas.Infra.EF.Services;
 using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -39,7 +37,7 @@ public class Startup
 			c.DescribeAllEnumsAsStrings();
 		});
 
-		services.AddDbContext<PessoasFisicasDbContext>(options =>
+		services.AddDbContext<AppDbContext>(options =>
 		{
 			options.UseSqlServer(Configuration.GetConnectionString("AppDatabase"));
 			options.UseLazyLoadingProxies();
@@ -70,13 +68,14 @@ public class Startup
 		builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
 		builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
-		builder.RegisterAssemblyTypes(typeof(Repository<>).Assembly)
+		builder.RegisterAssemblyTypes(typeof(Demo.GerenciamentoEscolar.Infra.EF.Foo).Assembly)
 				.Where(t => t.Name.EndsWith("Repository"))
 				.AsImplementedInterfaces();
 
-		builder.RegisterAssemblyTypes(typeof(PessoaFisicaService).Assembly)
+		builder.RegisterAssemblyTypes(typeof(Demo.GerenciamentoEscolar.Infra.EF.Foo).Assembly)
 				.Where(t => t.Name.EndsWith("Service"))
 				.AsImplementedInterfaces();
+
 
 		builder.RegisterType<AppConnectionString>()
 			.AsSelf()

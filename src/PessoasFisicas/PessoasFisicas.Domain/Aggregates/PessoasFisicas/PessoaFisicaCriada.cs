@@ -1,7 +1,7 @@
 ﻿using SharedKernel.Common;
 using System;
 
-namespace PessoasFisicas.Domain.Aggregates
+namespace Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas
 {
 	public class PessoaFisicaCriada : IDomainEvent
 	{

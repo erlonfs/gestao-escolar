@@ -1,7 +1,7 @@
-﻿using PessoasFisicas.Infra.Data.PessoaFisica;
+﻿using Demo.GerenciamentoEscolar.Infra.Data.PessoaFisica;
 using System.Threading.Tasks;
 
-namespace PessoasFisicas.Infra.Data
+namespace Demo.GerenciamentoEscolar.Infra.Data
 {
 	public interface IPessoaFisicaFinder
 	{

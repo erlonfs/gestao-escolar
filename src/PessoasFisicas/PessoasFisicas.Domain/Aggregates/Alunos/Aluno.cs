@@ -1,10 +1,11 @@
-﻿using SharedKernel.Common;
+﻿using Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas;
+using SharedKernel.Common;
 using System;
 
-namespace Alunos.Domain.Aggregates
+namespace Demo.GerenciamentoEscolar.Domain.Aggregates.Alunos
 {
 	public class Aluno : Entity<Guid>
-	{
+    {
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
 
@@ -18,15 +19,12 @@ namespace Alunos.Domain.Aggregates
 
 		}
 
-		public Aluno(Guid id, DateTime dataCriacao, int pessoaFisicaId, int matricula)
+		public Aluno(Guid id, PessoaFisica pessoaFisica, int matricula)
 		{
 			EntityId = id;
-			DataCriacao = dataCriacao;
-			PessoaFisicaId = pessoaFisicaId;
+			DataCriacao = DateTime.Now;
+			PessoaFisica = pessoaFisica;
 			Matricula = matricula;
-
-			DomainEvents.Raise(new AlunoCriado(EntityId, this));
-
 		}
 	}
 }

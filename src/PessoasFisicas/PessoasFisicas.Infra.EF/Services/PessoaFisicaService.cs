@@ -1,10 +1,10 @@
-﻿using PessoasFisicas.Domain.Repositories;
-using PessoasFisicas.Domain.Aggregates;
+﻿using Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GerenciamentoEscolar.Domain.Repositories.PessoasFisicas;
+using Demo.GerenciamentoEscolar.Domain.Services.PessoasFisicas;
 using System;
 using System.Threading.Tasks;
-using PessoasFisicas.Domain.Services;
 
-namespace PessoasFisicas.Infra.EF.Services
+namespace Demo.GerenciamentoEscolar.Infra.EF.Services
 {
 	public class PessoaFisicaService : IPessoaFisicaService
 	{
@@ -17,7 +17,7 @@ namespace PessoasFisicas.Infra.EF.Services
 
 		public async Task<PessoaFisica> CriarAsync(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
-			var pessoaFisica = new PessoaFisica(id, DateTime.Now, nome, cpf, nomeSocial, sexo, dataNascimento);
+			var pessoaFisica = new PessoaFisica(id, nome, cpf, nomeSocial, sexo, dataNascimento);
 
 			await _pessoasFisicaRepository.AddAsync(pessoaFisica);
 

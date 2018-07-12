@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\" />
+    <Folder Include="Exceptions\Alunos\" />
+    <Folder Include="Exceptions\PessoasFisicas\" />
   </ItemGroup>
 
   <ItemGroup>

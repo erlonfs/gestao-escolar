@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PessoasFisicas.Api.Dtos;
-using PessoasFisicas.Domain.Services;
+﻿using Demo.GerenciamentoEscolar.Api.Dtos;
+using Demo.GerenciamentoEscolar.Domain.Services.PessoasFisicas;
+using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
 using System;
 using System.Threading.Tasks;
 
-namespace PessoasFisicas.Api.Controllers
+namespace Demo.GerenciamentoEscolar.Api.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/pessoas-fisicas")]

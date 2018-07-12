@@ -1,8 +1,8 @@
-﻿using PessoasFisicas.Domain.Aggregates;
+﻿using Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas;
 using System;
 using System.Threading.Tasks;
 
-namespace PessoasFisicas.Domain.Services
+namespace Demo.GerenciamentoEscolar.Domain.Services.PessoasFisicas
 {
 	public interface IPessoaFisicaService
 	{

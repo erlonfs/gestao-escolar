@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PessoasFisicas.Domain\PessoasFisicas.Domain.csproj" />
+    <ProjectReference Include="..\PessoasFisicas.Domain\Demo.GerenciamentoEscolar.Domain.csproj" />
   </ItemGroup>
 
 </Project>

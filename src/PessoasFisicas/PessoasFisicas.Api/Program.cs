@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
-namespace GerenciamentoEscolar.Api
+namespace Demo.GerenciamentoEscolar.Api
 {
 	public class Program
 	{

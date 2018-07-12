@@ -1,15 +1,15 @@
 ﻿using SharedKernel.Common;
 using System;
 
-namespace PessoasFisicas.Domain.Aggregates
+namespace Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas
 {
-	public class PessoaFisicaCpfAlterado : IDomainEvent
+	public class PessoaFisicaAlterada : IDomainEvent
 	{
 		public Guid AggregateId { get; }
 		public PessoaFisica PessoaFisica { get; }
 		public DateTime DataExecucao { get; }
 
-		public PessoaFisicaCpfAlterado(Guid aggregateId, PessoaFisica pessoaFisica)
+		public PessoaFisicaAlterada(Guid aggregateId, PessoaFisica pessoaFisica)
 		{
 			AggregateId = aggregateId;
 			PessoaFisica = pessoaFisica;

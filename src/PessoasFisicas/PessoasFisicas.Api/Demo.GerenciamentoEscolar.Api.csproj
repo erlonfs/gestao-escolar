@@ -5,6 +5,8 @@
     <ApplicationIcon />
     <OutputType>WinExe</OutputType>
     <StartupObject />
+    <AssemblyName>Demo.GerenciamentoEscolar.Api</AssemblyName>
+    <RootNamespace>Demo.GerenciamentoEscolar.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
-    <ProjectReference Include="..\PessoasFisicas.Domain\PessoasFisicas.Domain.csproj" />
-    <ProjectReference Include="..\PessoasFisicas.Infra.EF\PessoasFisicas.Infra.EF.csproj" />
+    <ProjectReference Include="..\PessoasFisicas.Infra.EF\Demo.GerenciamentoEscolar.Infra.EF.csproj" />
   </ItemGroup>
 
 </Project>

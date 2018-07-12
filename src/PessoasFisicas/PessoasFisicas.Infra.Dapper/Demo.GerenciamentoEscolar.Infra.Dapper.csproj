@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PessoasFisicas.Infra\PessoasFisicas.Infra.csproj" />
+    <ProjectReference Include="..\PessoasFisicas.Infra\Demo.GerenciamentoEscolar.Infra.csproj" />
   </ItemGroup>
 
 </Project>

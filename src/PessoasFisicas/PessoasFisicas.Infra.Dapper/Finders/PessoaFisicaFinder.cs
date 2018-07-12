@@ -1,9 +1,9 @@
-﻿using PessoasFisicas.Infra.Data;
-using PessoasFisicas.Infra.Data.PessoaFisica;
+﻿using Demo.GerenciamentoEscolar.Infra.Data;
+using Demo.GerenciamentoEscolar.Infra.Data.PessoaFisica;
 using System;
 using System.Threading.Tasks;
 
-namespace PessoasFisicas.Infra.Dapper.Finders
+namespace Demo.GerenciamentoEscolar.Infra.Dapper.Finders
 {
 	public class PessoaFisicaFinder : IPessoaFisicaFinder
 	{

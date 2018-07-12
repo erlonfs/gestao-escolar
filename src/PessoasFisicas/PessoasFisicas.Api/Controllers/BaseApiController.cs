@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PessoasFisicas.Api.Controllers
+namespace Demo.GerenciamentoEscolar.Api.Controllers
 {
 	[ApiExceptionFilter]
 	public class BaseApiController : Controller

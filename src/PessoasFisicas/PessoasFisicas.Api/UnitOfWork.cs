@@ -1,17 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PessoasFisicas.Infra.EF;
+﻿using Demo.GerenciamentoEscolar.Infra.EF;
+using Microsoft.EntityFrameworkCore;
 using SharedKernel.Common;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GerenciamentoEscolar.Api
+namespace Demo.GerenciamentoEscolar.Api
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		private readonly PessoasFisicasDbContext _dbContext;
+		private readonly DbContext _dbContext;
 
-		public UnitOfWork(PessoasFisicasDbContext dbContext)
+		public UnitOfWork(AppDbContext dbContext)
 		{
 			_dbContext = dbContext;
 		}

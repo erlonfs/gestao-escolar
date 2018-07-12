@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.GerenciamentoEscolar.Infra.EF.Repositories
+namespace Alunos.Infra.EF.Repositories
 {
 	public class Repository<TEntity> where TEntity : Entity<Guid>
 	{

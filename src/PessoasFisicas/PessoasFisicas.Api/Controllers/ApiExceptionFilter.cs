@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SharedKernel.Common;
 
-namespace PessoasFisicas.Api.Controllers
+namespace Demo.GerenciamentoEscolar.Api.Controllers
 {
 	public class ApiExceptionFilter : ExceptionFilterAttribute
 	{
@@ -19,7 +19,8 @@ namespace PessoasFisicas.Api.Controllers
 				var objectResult = new ObjectResult(new
 				{
 					StatusCode = statusCode,
-					Value = context.Exception.Message
+					Value = context.Exception.Message,
+					InnerException = context.Exception.InnerException.Message
 				});
 
 				context.Result = objectResult;

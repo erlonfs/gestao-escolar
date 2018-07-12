@@ -1,13 +1,13 @@
-﻿using PessoasFisicas.Domain.Aggregates;
-using PessoasFisicas.Domain.Repositories;
+﻿using Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GerenciamentoEscolar.Domain.Repositories.PessoasFisicas;
 
-namespace PessoasFisicas.Infra.EF.Repositories
+namespace Demo.GerenciamentoEscolar.Infra.EF.Repositories
 {
 	public class PessoaFisicaRepository : Repository<PessoaFisica>,  IPessoaFisicaRepository
 	{
-		private PessoasFisicasDbContext _context;
+		private AppDbContext _context;
 
-		public PessoaFisicaRepository(PessoasFisicasDbContext context) : base(context)
+		public PessoaFisicaRepository(AppDbContext context) : base(context)
 		{
 			_context = context;
 		}

@@ -1,4 +1,4 @@
-﻿namespace GerenciamentoEscolar.Api
+﻿namespace Demo.GerenciamentoEscolar.Api
 {
 	public class AppConnectionString
     {

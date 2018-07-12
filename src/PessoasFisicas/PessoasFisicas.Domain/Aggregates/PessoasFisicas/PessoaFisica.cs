@@ -1,7 +1,7 @@
 ﻿using SharedKernel.Common;
 using System;
 
-namespace PessoasFisicas.Domain.Aggregates
+namespace Demo.GerenciamentoEscolar.Domain.Aggregates.PessoasFisicas
 {
 	public class PessoaFisica : Entity<Guid>
 	{
@@ -18,11 +18,10 @@ namespace PessoasFisicas.Domain.Aggregates
 
 		}
 
-		public PessoaFisica(Guid id, DateTime dataCriacao, string nome, string cpf,
-							string nomeSocial, string sexo, DateTime dataNascimento)
+		public PessoaFisica(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
 			EntityId = id;
-			DataCriacao = dataCriacao;
+			DataCriacao = DateTime.Now;
 
 			Nome = nome;
 			Cpf = cpf;
