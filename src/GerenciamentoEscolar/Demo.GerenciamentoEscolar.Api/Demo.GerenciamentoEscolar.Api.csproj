@@ -23,7 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
-    <ProjectReference Include="..\PessoasFisicas.Infra.EF\Demo.GerenciamentoEscolar.Infra.EF.csproj" />
+    <ProjectReference Include="..\Demo.GerenciamentoEscolar.Domain\Demo.GerenciamentoEscolar.Domain.csproj" />
+    <ProjectReference Include="..\Demo.GerenciamentoEscolar.Infra.EF\Demo.GerenciamentoEscolar.Infra.EF.csproj" />
   </ItemGroup>
 
 </Project>
