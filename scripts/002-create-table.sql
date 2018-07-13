@@ -1,4 +1,4 @@
-USE GerenciamentoEscolar;
+USE GestaoEscolar;
 GO
 
 DROP TABLE GES.Aluno;

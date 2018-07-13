@@ -1,2 +1,2 @@
-# e-escola
-Gerenciamento escolar
+# gestao escolar
+

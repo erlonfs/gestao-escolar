@@ -1,7 +1,7 @@
-CREATE DATABASE GerenciamentoEscolar;
+CREATE DATABASE GestaoEscolar;
 GO
 
-USE GerenciamentoEscolar;
+USE GestaoEscolar;
 GO
 
 CREATE SCHEMA GES;
