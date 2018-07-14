@@ -3,7 +3,6 @@ using Autofac.Extensions.DependencyInjection;
 using Demo.GestaoEscolar.Api;
 using Demo.GestaoEscolar.Api.Controllers;
 using Demo.GestaoEscolar.Infra.EF;
-using Demo.GestaoEscolar.Infra.EF.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -67,6 +66,7 @@ public class Startup
 	{
 		builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
 		builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+		builder.RegisterType<MessageBus>().As<IMessageBus>();
 
 		builder.RegisterAssemblyTypes(typeof(Demo.GestaoEscolar.Infra.EF.Foo).Assembly)
 				.Where(t => t.Name.EndsWith("Repository"))

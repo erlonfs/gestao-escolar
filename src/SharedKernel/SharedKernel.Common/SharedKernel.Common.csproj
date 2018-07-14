@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Configurations>Debug;Release;Staging</Configurations>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<Configurations>Debug;Release;Development;Staging;Production</Configurations>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.8.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="4.8.1" />
+	</ItemGroup>
 
 </Project>

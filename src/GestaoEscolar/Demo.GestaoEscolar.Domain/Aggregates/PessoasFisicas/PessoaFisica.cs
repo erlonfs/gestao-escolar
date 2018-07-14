@@ -7,11 +7,16 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 	{
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
+
 		public string Nome { get; private set; }
 		public string Cpf { get; private set; }
 		public string NomeSocial { get; private set; }
 		public string Sexo { get; private set; }
 		public DateTime DataNascimento { get; private set; }
+
+		//public virtual Filiacao Filiacao { get; private set; }
+		//public virtual Nacionalidade Nacionalidade { get; private set; }
+		//public virtual Endereco Endereco { get; private set; }
 
 		protected PessoaFisica()
 		{

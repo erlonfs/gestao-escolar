@@ -10,10 +10,13 @@ namespace Demo.GestaoEscolar.Api
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly DbContext _dbContext;
+		private readonly IMessageBus _messageBus;
 
-		public UnitOfWork(AppDbContext dbContext)
+		public UnitOfWork(AppDbContext dbContext,
+						 IMessageBus messageBus)
 		{
 			_dbContext = dbContext;
+			_messageBus = messageBus;
 		}
 
 		public async Task CommitAsync()
@@ -27,6 +30,11 @@ namespace Demo.GestaoEscolar.Api
 						await _dbContext.SaveChangesAsync();
 
 						transaction.Commit();
+
+						foreach (var e in DomainEvents.GetEvents())
+						{
+							await _messageBus.PublishAsync(e);
+						}
 
 					}
 					catch (Exception)

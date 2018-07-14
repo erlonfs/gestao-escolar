@@ -1,8 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Configurations>Debug;Release;Staging</Configurations>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<Configurations>Debug;Release;Development;Staging;Production</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Aggregates\Alunos\" />
+		<Folder Include="Aggregates\PessoasFisicas\" />
+		<Folder Include="ValueObjects\" />
+		<Folder Include="Services\" />
+	</ItemGroup>
 
 </Project>
