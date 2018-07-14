@@ -1,2 +1,2 @@
-USE Escola;
+USE GestaoEscolar;
 GO

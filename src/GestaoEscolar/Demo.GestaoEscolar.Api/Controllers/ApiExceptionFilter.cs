@@ -20,7 +20,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 				{
 					StatusCode = statusCode,
 					Value = context.Exception.Message,
-					InnerException = context.Exception.InnerException.Message
+					InnerException = context.Exception?.InnerException?.Message
 				});
 
 				context.Result = objectResult;

@@ -7,6 +7,7 @@
     <StartupObject />
     <AssemblyName>Demo.GestaoEscolar.Api</AssemblyName>
     <RootNamespace>Demo.GestaoEscolar.Api</RootNamespace>
+    <Configurations>Debug;Release;Staging</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

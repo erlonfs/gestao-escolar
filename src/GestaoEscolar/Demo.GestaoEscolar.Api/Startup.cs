@@ -33,7 +33,7 @@ public class Startup
 
 		services.AddSwaggerGen(c =>
 		{
-			c.SwaggerDoc("v1", new Info { Title = "Gerenciamento Escolar API", Version = "v1" });
+			c.SwaggerDoc("v1", new Info { Title = "Gestão Escolar API", Version = "v1" });
 			c.DescribeAllEnumsAsStrings();
 		});
 
@@ -59,7 +59,7 @@ public class Startup
 		app.UseSwagger();
 		app.UseSwaggerUI(c =>
 		{
-			c.SwaggerEndpoint("/swagger/v1/swagger.json", "Gerenciamento Escolar API V1");
+			c.SwaggerEndpoint("/swagger/v1/swagger.json", $"Gestão Escolar API V1 {env.EnvironmentName}");
 		});
 	}
 

@@ -8,8 +8,19 @@ namespace Demo.GestaoEscolar.Api
 	{
 		public static void Main(string[] args)
 		{
+			string environmentName;
+
+			#if DEBUG
+				environmentName = "Development";
+			#elif STAGING
+				environmentName = "Staging";
+			#elif RELEASE
+				environmentName = "Production";
+			#endif
+
 			var host = new WebHostBuilder()
 				.UseKestrel()
+				.UseEnvironment(environmentName)
 				.ConfigureServices(services => services.AddAutofac())
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseIISIntegration()
