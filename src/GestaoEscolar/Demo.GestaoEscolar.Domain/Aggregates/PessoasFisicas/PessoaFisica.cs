@@ -3,7 +3,7 @@ using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {
-	public class PessoaFisica : Entity<Guid>
+	public class PessoaFisica : Aggregate<Guid>
 	{
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }

@@ -6,7 +6,7 @@ using Demo.GestaoEscolar.Domain.Services.Alunos;
 using System;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.EF.Services
+namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
 {
 	public class AlunoService : IAlunoService
 	{

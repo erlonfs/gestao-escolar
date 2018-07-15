@@ -4,7 +4,7 @@ using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
 using System;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.EF.Services
+namespace Demo.GestaoEscolar.Infra.EF.Services.PessoasFisicas
 {
 	public class PessoaFisicaService : IPessoaFisicaService
 	{

@@ -4,7 +4,7 @@ using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 {
-	public class Aluno : Entity<Guid>
+	public class Aluno : Aggregate<Guid>
 	{
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
@@ -12,7 +12,12 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 		public int PessoaFisicaId { get; private set; }
 		public virtual PessoaFisica PessoaFisica { get; private set; }
 
+		public int ReponsavelId { get; private set; }
+		public virtual PessoaFisica Responsavel { get; private set; }
+
 		public int Matricula { get; private set; }
+
+		public AlunoSituacao Situacao { get; private set; }
 
 		protected Aluno()
 		{
@@ -25,9 +30,18 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 			DataCriacao = DateTime.Now;
 			PessoaFisica = pessoaFisica;
 			Matricula = matricula;
+			Situacao = AlunoSituacao.Matriculado;
 
 			DomainEvents.Raise(new AlunoMatriculado(EntityId, this));
 
+		}
+
+		public void Rematricular(PessoaFisica responsavel)
+		{
+			Responsavel = responsavel;
+			Situacao = AlunoSituacao.Matriculado;
+
+			DomainEvents.Raise(new AlunoRematriculado(EntityId, this));
 		}
 	}
 }
