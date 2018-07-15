@@ -1,5 +1,9 @@
 ﻿using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Web;
+using System;
 using System.IO;
 
 namespace Demo.GestaoEscolar.Api
@@ -25,9 +29,25 @@ namespace Demo.GestaoEscolar.Api
 				.UseContentRoot(Directory.GetCurrentDirectory())
 				.UseIISIntegration()
 				.UseStartup<Startup>()
+				.UseNLog()
 				.Build();
 
-			host.Run();
+			var logger = LogManager.GetCurrentClassLogger();
+
+			try
+			{
+				host.Run();
+			}
+			catch (Exception exception)
+			{
+				logger.Error(exception, "Stopped program because of exception");
+				throw;
+			}
+			finally
+			{
+				LogManager.Shutdown();
+			}
+			
 		}
 	}
 }
