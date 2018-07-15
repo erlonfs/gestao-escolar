@@ -26,8 +26,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 		{
 			var id = Guid.NewGuid();
 
-			var aluno = await _alunoService.MatricularAsync(id, pessoaFisicaId);
-
+			await _alunoService.MatricularAsync(id, pessoaFisicaId);
 			await _unitOfWork.CommitAsync();
 
 			return id;

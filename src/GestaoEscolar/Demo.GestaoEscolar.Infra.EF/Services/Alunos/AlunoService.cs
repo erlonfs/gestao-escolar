@@ -23,7 +23,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
 			_matriculaService = matriculaService;
 		}
 
-		public async Task<Aluno> MatricularAsync(Guid id, Guid pessoaFisicaId)
+		public async Task MatricularAsync(Guid id, Guid pessoaFisicaId)
 		{
 			var pessoaFisica = await _pessoaFisicaRepository.GetByEntityIdAsync(pessoaFisicaId);
 			if (pessoaFisica == null) throw new PessoaFisicaNaoEncontradaException();
@@ -33,8 +33,6 @@ namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
 			var aluno = new Aluno(id, pessoaFisica, matricula);
 
 			await _alunoRepository.AddAsync(aluno);
-
-			return aluno;
 		}
 	}
 }

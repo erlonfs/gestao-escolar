@@ -14,6 +14,7 @@ using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
 using Demo.GestaoEscolar.Infra.EF.Services;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
+using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 
 public class Startup
 {
