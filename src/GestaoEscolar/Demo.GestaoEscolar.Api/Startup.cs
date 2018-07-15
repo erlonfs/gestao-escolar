@@ -2,7 +2,9 @@
 using Autofac.Extensions.DependencyInjection;
 using Demo.GestaoEscolar.Api;
 using Demo.GestaoEscolar.Api.Controllers;
+using Demo.GestaoEscolar.Infra;
 using Demo.GestaoEscolar.Infra.EF;
+using Demo.GestaoEscolar.Infra.Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
+using Demo.GestaoEscolar.Infra.EF.Services;
+using Demo.GestaoEscolar.Domain.Services.Alunos;
 
 public class Startup
 {
@@ -68,6 +72,8 @@ public class Startup
 		builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 		builder.RegisterType<MessageBus>().As<IMessageBus>();
 
+		builder.RegisterType<MatriculaService>().As<IMatriculaService>();
+
 		builder.RegisterAssemblyTypes(typeof(Demo.GestaoEscolar.Infra.EF.Foo).Assembly)
 				.Where(t => t.Name.EndsWith("Repository"))
 				.AsImplementedInterfaces();
@@ -76,6 +82,9 @@ public class Startup
 				.Where(t => t.Name.EndsWith("Service"))
 				.AsImplementedInterfaces();
 
+		builder.RegisterAssemblyTypes(typeof(Demo.GestaoEscolar.Infra.Dapper.Foo).Assembly)
+				.Where(t => t.Name.EndsWith("Finder"))
+				.AsImplementedInterfaces();
 
 		builder.RegisterType<AppConnectionString>()
 			.AsSelf()

@@ -21,12 +21,12 @@ namespace Demo.GestaoEscolar.Api.Controllers
 		}
 
 		[HttpPost]
-		[Route("{pessoaFisicaId:guid}/")]
+		[Route("{pessoaFisicaId:guid}/matricular")]
 		public async Task<Guid> CriarAsync(Guid pessoaFisicaId)
 		{
 			var id = Guid.NewGuid();
 
-			var pessoaFisica = await _alunoService.CriarAsync(id, pessoaFisicaId, 4500);
+			var aluno = await _alunoService.MatricularAsync(id, pessoaFisicaId);
 
 			await _unitOfWork.CommitAsync();
 

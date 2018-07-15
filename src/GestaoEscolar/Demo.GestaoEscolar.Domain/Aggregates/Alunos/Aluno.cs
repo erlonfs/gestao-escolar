@@ -5,7 +5,7 @@ using System;
 namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 {
 	public class Aluno : Entity<Guid>
-    {
+	{
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
 
@@ -25,6 +25,9 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 			DataCriacao = DateTime.Now;
 			PessoaFisica = pessoaFisica;
 			Matricula = matricula;
+
+			DomainEvents.Raise(new AlunoMatriculado(EntityId, this));
+
 		}
 	}
 }

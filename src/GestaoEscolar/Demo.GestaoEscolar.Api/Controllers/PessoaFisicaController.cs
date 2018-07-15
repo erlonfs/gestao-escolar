@@ -1,8 +1,10 @@
 ﻿using Demo.GestaoEscolar.Api.Dtos;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
+using Demo.GestaoEscolar.Infra.Data;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
@@ -13,12 +15,15 @@ namespace Demo.GestaoEscolar.Api.Controllers
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IPessoaFisicaService _pessoaFisicaService;
+		private readonly IPessoaFisicaFinder _pessoaFisicaFinder;
 
 		public PessoaFisicaController(IUnitOfWork unitOfWork,
-									 IPessoaFisicaService pessoaFisicaService)
+									 IPessoaFisicaService pessoaFisicaService,
+									 IPessoaFisicaFinder pessoaFisicaFinder)
 		{
 			_unitOfWork = unitOfWork;
 			_pessoaFisicaService = pessoaFisicaService;
+			_pessoaFisicaFinder = pessoaFisicaFinder;
 		}
 
 		[HttpPost]
@@ -32,6 +37,17 @@ namespace Demo.GestaoEscolar.Api.Controllers
 			await _unitOfWork.CommitAsync();
 
 			return id;
+
+		}
+
+		[HttpGet]
+		[Route("")]
+		public async Task<IEnumerable<PessoaFisicaDto>> ObterAsync()
+		{
+			var result = await _pessoaFisicaFinder.ObterAsync();
+			if (result == null) NotFound();
+
+			return result;
 
 		}
 	}

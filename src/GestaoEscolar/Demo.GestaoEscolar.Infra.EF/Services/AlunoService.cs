@@ -1,4 +1,5 @@
 ﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
@@ -11,16 +12,23 @@ namespace Demo.GestaoEscolar.Infra.EF.Services
 	{
 		private readonly IAlunoRepository _alunoRepository;
 		private readonly IPessoaFisicaRepository _pessoaFisicaRepository;
+		private readonly IMatriculaService _matriculaService;
 
-		public AlunoService(IAlunoRepository alunoRepository, IPessoaFisicaRepository pessoaFisicaRepository)
+		public AlunoService(IAlunoRepository alunoRepository, 
+							IPessoaFisicaRepository pessoaFisicaRepository,
+							IMatriculaService matriculaService)
 		{
 			_alunoRepository = alunoRepository;
 			_pessoaFisicaRepository = pessoaFisicaRepository;
+			_matriculaService = matriculaService;
 		}
 
-		public async Task<Aluno> CriarAsync(Guid id, Guid pessoaFisicaId, int matricula)
+		public async Task<Aluno> MatricularAsync(Guid id, Guid pessoaFisicaId)
 		{
 			var pessoaFisica = await _pessoaFisicaRepository.GetByEntityIdAsync(pessoaFisicaId);
+			if (pessoaFisica == null) throw new PessoaFisicaNaoEncontradaException();
+
+			var matricula = await _matriculaService.GerarMatriculaAsync();
 
 			var aluno = new Aluno(id, pessoaFisica, matricula);
 

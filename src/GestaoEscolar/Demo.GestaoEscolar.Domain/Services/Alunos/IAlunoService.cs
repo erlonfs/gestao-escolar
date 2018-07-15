@@ -6,6 +6,6 @@ namespace Demo.GestaoEscolar.Domain.Services.Alunos
 {
 	public interface IAlunoService
 	{
-		Task<Aluno> CriarAsync(Guid id, Guid pessoasFisicaId, int matricula);
+		Task<Aluno> MatricularAsync(Guid id, Guid pessoasFisicaId);
 	}
 }
