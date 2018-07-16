@@ -43,8 +43,8 @@ namespace Demo.GestaoEscolar.Api.Controllers
 
 		}
 
-		[HttpPut]
-		[Route("{id:guid}/adicionar-sala")]
+		[HttpPost]
+		[Route("{id:guid}/sala")]
 		public async Task<Guid> AdicionarSalaAsync(Guid id, string faseAno, Turno turno)
 		{
 			var salaId = Guid.NewGuid();
