@@ -1,7 +1,7 @@
 ﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 
-namespace Demo.GestaoEscolar.Infra.EF.Repositories
+namespace Demo.GestaoEscolar.Infra.EF.Repositories.PessoasFisicas
 {
 	public class PessoaFisicaRepository : Repository<PessoaFisica>,  IPessoaFisicaRepository
 	{

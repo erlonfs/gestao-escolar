@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exceptions\Alunos\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
   </ItemGroup>
 

@@ -12,25 +12,25 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 		public int PessoaFisicaId { get; private set; }
 		public virtual PessoaFisica PessoaFisica { get; private set; }
 
-		public int ReponsavelId { get; private set; }
+		public int ResponsavelId { get; private set; }
 		public virtual PessoaFisica Responsavel { get; private set; }
 
 		public int Matricula { get; private set; }
-
-		public AlunoSituacao Situacao { get; private set; }
+		public int SituacaoId { get; private set; }
 
 		protected Aluno()
 		{
 
 		}
 
-		public Aluno(Guid id, PessoaFisica pessoaFisica, int matricula)
+		public Aluno(Guid id, PessoaFisica pessoaFisica, PessoaFisica responsavel, int matricula)
 		{
 			EntityId = id;
 			DataCriacao = DateTime.Now;
 			PessoaFisica = pessoaFisica;
+			Responsavel = responsavel;
 			Matricula = matricula;
-			Situacao = AlunoSituacao.Matriculado;
+			SituacaoId = (int)AlunoSituacao.Matriculado;
 
 			DomainEvents.Raise(new AlunoMatriculado(EntityId, this));
 
@@ -39,7 +39,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 		public void Rematricular(PessoaFisica responsavel)
 		{
 			Responsavel = responsavel;
-			Situacao = AlunoSituacao.Matriculado;
+			SituacaoId = (int)AlunoSituacao.Matriculado;
 
 			DomainEvents.Raise(new AlunoRematriculado(EntityId, this));
 		}

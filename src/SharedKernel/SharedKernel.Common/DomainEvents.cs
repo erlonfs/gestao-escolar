@@ -62,6 +62,7 @@ namespace SharedKernel.Common
 
 		public static IReadOnlyList<IDomainEvent> GetEvents()
 		{
+			if (_events == null) return new List<IDomainEvent>().AsReadOnly();
 			return _events.AsReadOnly();
 		}
 	}

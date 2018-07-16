@@ -32,8 +32,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 		{
 			var id = Guid.NewGuid();
 
-			var pessoaFisica = await _pessoaFisicaService.CriarAsync(id, dto.Nome, dto.Cpf, dto.NomeSocial, dto.Sexo, dto.DataNascimento);
-
+			await _pessoaFisicaService.CriarAsync(id, dto.Nome, dto.Cpf, dto.NomeSocial, dto.Sexo, dto.DataNascimento);
 			await _unitOfWork.CommitAsync();
 
 			return id;

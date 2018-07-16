@@ -15,13 +15,10 @@ namespace Demo.GestaoEscolar.Infra.EF.Services.PessoasFisicas
 			_pessoasFisicaRepository = pessoaFisicaRepository;
 		}
 
-		public async Task<PessoaFisica> CriarAsync(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
+		public async Task CriarAsync(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
 			var pessoaFisica = new PessoaFisica(id, nome, cpf, nomeSocial, sexo, dataNascimento);
-
 			await _pessoasFisicaRepository.AddAsync(pessoaFisica);
-
-			return pessoaFisica;
 		}
 	}
 }
