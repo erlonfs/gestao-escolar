@@ -47,7 +47,15 @@ namespace SharedKernel.Common
 			{
 				foreach (var handler in _scope.ResolveOptional<IEnumerable<IHandler<T>>>())
 				{
-					handler.HandleAsync(args).ConfigureAwait(true);
+					try
+					{
+						handler.HandleAsync(args).ConfigureAwait(true).GetAwaiter().GetResult();
+					}
+					catch (Exception)
+					{
+						throw;
+					}
+					
 				}
 			}
 

@@ -42,7 +42,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 
 		}
 
-		[HttpPost]
+		[HttpPut]
 		[Route("{id:guid}/adicionar-sala")]
 		public async Task<Guid> AdicionarSalaAsync(Guid id, string faseAno, Turno turno)
 		{
@@ -50,17 +50,6 @@ namespace Demo.GestaoEscolar.Api.Controllers
 
 			await _escolaService.AdicionarSalaAsync(id, salaId, faseAno, turno);
 
-			await _unitOfWork.CommitAsync();
-
-			return salaId;
-
-		}
-
-		[HttpDelete]
-		[Route("{id:guid}/remover-sala/{salaId:guid}")]
-		public async Task<Guid> RemoverSalaAsync(Guid id, Guid salaId)
-		{
-			await _escolaService.RemoverSalaAsync(id, salaId);
 			await _unitOfWork.CommitAsync();
 
 			return salaId;

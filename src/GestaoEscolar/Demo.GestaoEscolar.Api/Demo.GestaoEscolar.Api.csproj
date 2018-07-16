@@ -39,6 +39,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
+		<ProjectReference Include="..\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Infra\Demo.GestaoEscolar.Infra.csproj" />

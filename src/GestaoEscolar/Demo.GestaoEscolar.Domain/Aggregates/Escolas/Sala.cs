@@ -2,6 +2,7 @@
 using SharedKernel.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 {
@@ -32,6 +33,12 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 		internal void AdicionarAluno(Aluno aluno)
 		{
 			Alunos.Add(new SalaAluno(this, aluno));
+		}
+
+		internal void RemoverAluno(Aluno aluno)
+		{
+			var alunoRemover = Alunos.SingleOrDefault(x => x.Aluno.EntityId == aluno.EntityId);
+			Alunos.Remove(alunoRemover);
 		}
 	}
 }

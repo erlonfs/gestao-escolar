@@ -2,9 +2,10 @@
 using Autofac.Extensions.DependencyInjection;
 using Demo.GestaoEscolar.Api;
 using Demo.GestaoEscolar.Api.Controllers;
+using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Infra;
 using Demo.GestaoEscolar.Infra.EF;
-using Demo.GestaoEscolar.Infra.Dapper;
+using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
-using Demo.GestaoEscolar.Infra.EF.Services;
-using Demo.GestaoEscolar.Domain.Services.Alunos;
-using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 
 public class Startup
 {
@@ -55,6 +53,8 @@ public class Startup
 
 		Container = builder.Build();
 
+		DomainEvents.Init(Container.BeginLifetimeScope());
+
 	}
 
 	public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -87,9 +87,13 @@ public class Startup
 				.Where(t => t.Name.EndsWith("Finder"))
 				.AsImplementedInterfaces();
 
+		builder.RegisterAssemblyTypes(typeof(Demo.GestaoEscolar.Handlers.Foo).Assembly)
+				.AsClosedTypesOf(typeof(IHandler<>));
+
 		builder.RegisterType<AppConnectionString>()
 			.AsSelf()
 			.WithParameter(new TypedParameter(typeof(string), Configuration.GetConnectionString("AppDatabase")));
+
 	}
 
 }

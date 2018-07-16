@@ -17,7 +17,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 
 		protected Escola()
 		{
-
+			
 		}
 
 		public Escola(Guid id, string nome)
@@ -36,6 +36,12 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 		{
 			var sala = Salas.SingleOrDefault(x => x.EntityId == salaId);
 			sala.AdicionarAluno(aluno);
+		}
+
+		public void RemoverAluno(Aluno aluno)
+		{
+			var sala = Salas.SingleOrDefault(x => x.Alunos.Any(y => y.Aluno.EntityId == aluno.EntityId));
+			sala.RemoverAluno(aluno);
 		}
 
 	}

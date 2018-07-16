@@ -43,5 +43,12 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 
 			DomainEvents.Raise(new AlunoRematriculado(EntityId, this));
 		}
+
+		public void Transferir()
+		{
+			SituacaoId = (int)AlunoSituacao.Transferido;
+
+			DomainEvents.Raise(new AlunoTransferido(EntityId, this));
+		}
 	}
 }
