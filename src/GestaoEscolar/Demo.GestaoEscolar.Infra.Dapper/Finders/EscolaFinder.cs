@@ -40,7 +40,7 @@ namespace Demo.GestaoEscolar.Infra.Dapper.Finders
 
 		public async Task<IEnumerable<SalaDto>> ObterSalasPorEscolaIdAsync(Guid escolaId)
 		{
-			string sql = @"SELECT s.FaseAno, st.Nome AS Turno, 
+			string sql = @"SELECT s.EntityId, s.FaseAno, st.Nome AS Turno, 
 						(SELECT COUNT(1) FROM GES.SalaAluno AS sa WHERE sa.SalaId = s.Id) AS  QtdAlunos
 						 FROM GES.Sala AS s
 						INNER JOIN GES.Escola AS e ON e.Id = s.EscolaId
