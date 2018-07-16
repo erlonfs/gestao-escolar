@@ -54,6 +54,8 @@ namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
 			var aluno = await _alunoRepository.GetByEntityIdAsync(alunoId);
 			if (aluno == null) throw new AlunoNaoEncontradoException();
 
+			if (aluno.SituacaoId == (int)AlunoSituacao.Matriculado) throw new AlunoJaMatriculadoException();
+
 			var responsavel = await _pessoaFisicaRepository.GetByEntityIdAsync(responsavelId);
 			if (responsavel == null) throw new ResponsavelNaoEncontradoException();
 

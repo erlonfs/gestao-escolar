@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
@@ -44,7 +45,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 		public async Task<IEnumerable<PessoaFisicaDto>> ObterAsync()
 		{
 			var result = await _pessoaFisicaFinder.ObterAsync();
-			if (result == null) NotFound();
+			if (result == null || !result.Any()) NotFound();
 
 			return result;
 

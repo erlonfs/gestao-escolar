@@ -4,7 +4,6 @@ namespace Demo.GestaoEscolar.Infra.Data
 {
 	public class PessoaFisicaDto
 	{
-		public int Id { get; set; }
 		public Guid EntityId { get; set; }
 		public DateTime DataCriacao { get; set; }
 

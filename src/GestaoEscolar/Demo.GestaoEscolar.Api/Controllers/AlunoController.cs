@@ -1,7 +1,10 @@
 ﻿using Demo.GestaoEscolar.Domain.Services.Alunos;
+using Demo.GestaoEscolar.Infra.Data;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
@@ -12,12 +15,15 @@ namespace Demo.GestaoEscolar.Api.Controllers
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IAlunoService _alunoService;
+		private readonly IAlunoFinder _alunoFinder;
 
 		public AlunoController(IUnitOfWork unitOfWork,
-							   IAlunoService alunoService)
+							   IAlunoService alunoService,
+							   IAlunoFinder alunoFinder)
 		{
 			_unitOfWork = unitOfWork;
 			_alunoService = alunoService;
+			_alunoFinder = alunoFinder;
 		}
 
 		[HttpPost]
@@ -30,6 +36,17 @@ namespace Demo.GestaoEscolar.Api.Controllers
 			await _unitOfWork.CommitAsync();
 
 			return id;
+
+		}
+
+		[HttpGet]
+		[Route("")]
+		public async Task<IEnumerable<AlunoDto>> ObterAsync()
+		{
+			var result = await _alunoFinder.ObterAsync();
+			if (result == null || !result.Any()) NotFound();
+
+			return result;
 
 		}
 

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
@@ -61,7 +62,7 @@ namespace Demo.GestaoEscolar.Api.Controllers
 		public async Task<IEnumerable<EscolaDto>> ObterAsync()
 		{
 			var result = await _escolaFinder.ObterAsync();
-			if (result == null) NotFound();
+			if (result == null || !result.Any()) NotFound();
 
 			return result;
 
