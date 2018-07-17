@@ -1,7 +1,5 @@
-﻿using Demo.GestaoEscolar.Api.Dtos;
-using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+﻿using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Services.Escolas;
-using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
 using Demo.GestaoEscolar.Infra.Data;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Common;
