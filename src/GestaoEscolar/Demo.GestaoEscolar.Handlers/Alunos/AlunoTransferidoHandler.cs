@@ -14,9 +14,9 @@ namespace Demo.GestaoEscolar.Handlers.Alunos
 			_alunoRepository = alunoRepository;
 		}
 
-		public async Task HandleAsync(AlunoTransferido e)
+		public Task HandleAsync(AlunoTransferido e)
 		{
-
+			return Task.CompletedTask;
 		}
 	}
 }

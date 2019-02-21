@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Handlers.Alunos
 {
-	public class AlunoMatriculadoHandler : IHandler<AlunoMatriculado>
-	{
-		private IAlunoRepository _alunoRepository;
+    public class AlunoMatriculadoHandler : IHandler<AlunoMatriculado>
+    {
+        private IAlunoRepository _alunoRepository;
 
-		public AlunoMatriculadoHandler(IAlunoRepository alunoRepository)
-		{
-			_alunoRepository = alunoRepository;
-		}
+        public AlunoMatriculadoHandler(IAlunoRepository alunoRepository)
+        {
+            _alunoRepository = alunoRepository;
+        }
 
-		public async Task HandleAsync(AlunoMatriculado e)
-		{
-
-		}
-	}
+        public Task HandleAsync(AlunoMatriculado e)
+        {
+            return Task.CompletedTask;
+        }
+    }
 }

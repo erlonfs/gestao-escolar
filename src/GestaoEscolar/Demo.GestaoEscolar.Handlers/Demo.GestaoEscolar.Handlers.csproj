@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Escolas\" />
-    <Folder Include="PessoasFisicas\" />
+    <Compile Remove="Escolas\**" />
+    <Compile Remove="PessoasFisicas\**" />
+    <EmbeddedResource Remove="Escolas\**" />
+    <EmbeddedResource Remove="PessoasFisicas\**" />
+    <None Remove="Escolas\**" />
+    <None Remove="PessoasFisicas\**" />
   </ItemGroup>
 
   <ItemGroup>
