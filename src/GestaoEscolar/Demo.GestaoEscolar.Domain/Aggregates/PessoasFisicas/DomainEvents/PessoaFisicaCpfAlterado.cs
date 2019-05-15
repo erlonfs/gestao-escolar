@@ -1,9 +1,9 @@
-﻿using SharedKernel.Common;
+﻿using CrossCutting;
 using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {
-	public class PessoaFisicaCpfAlterado : IDomainEvent
+    public class PessoaFisicaCpfAlterado : IDomainEvent
 	{
 		public Guid AggregateId { get; }
 		public PessoaFisica PessoaFisica { get; }

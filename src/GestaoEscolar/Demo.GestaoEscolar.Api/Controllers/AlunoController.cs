@@ -1,7 +1,7 @@
-﻿using Demo.GestaoEscolar.Domain.Services.Alunos;
-using Demo.GestaoEscolar.Infra.Data;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Services.Alunos;
+using Demo.GestaoEscolar.Infra.Dapper.Data.Alunos;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
 {
-	[Produces("application/json")]
+    [Produces("application/json")]
 	[Route("api/alunos")]
 	public class AlunoController : BaseApiController
 	{

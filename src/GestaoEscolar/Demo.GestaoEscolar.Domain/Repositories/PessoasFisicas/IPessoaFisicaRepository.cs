@@ -1,9 +1,9 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 
 namespace Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas
 {
-	public interface IPessoaFisicaRepository : IRepository<PessoaFisica>
+    public interface IPessoaFisicaRepository : IRepository<PessoaFisica>
 	{
 		
 	}

@@ -1,8 +1,8 @@
-﻿using Demo.GestaoEscolar.Api.Dtos;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Api.Dtos;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
-using Demo.GestaoEscolar.Infra.Data;
+using Demo.GestaoEscolar.Infra.Dapper.Data.PessoasFisicas;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
 {
-	[Produces("application/json")]
+    [Produces("application/json")]
 	[Route("api/pessoas-fisicas")]
 	public class PessoaFisicaController : BaseApiController
 	{

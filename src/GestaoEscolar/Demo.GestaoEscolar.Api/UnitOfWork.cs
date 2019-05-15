@@ -1,13 +1,13 @@
-﻿using Demo.GestaoEscolar.Infra.EF;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Infra.EF;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.Common;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api
 {
-	public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
 	{
 		private readonly DbContext _dbContext;
 		private readonly IMessageBus _messageBus;

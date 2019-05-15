@@ -1,10 +1,10 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 {
-	public class Aluno : Aggregate<Guid>
+    public class Aluno : Aggregate<Guid>
 	{
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }

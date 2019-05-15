@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SharedKernel.Common.ValueObjects
+namespace CrossCutting.ValueObjects
 {
 	[NotMapped]
 	public class Ano : ValueObject<Ano>

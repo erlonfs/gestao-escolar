@@ -1,6 +1,6 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
-using SharedKernel.Common;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Handlers.Alunos

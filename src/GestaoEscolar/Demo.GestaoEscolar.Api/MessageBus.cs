@@ -1,10 +1,10 @@
-﻿using NLog;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using NLog;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api
 {
-	public class MessageBus : IMessageBus
+    public class MessageBus : IMessageBus
 	{
 		private Logger _logger = LogManager.GetCurrentClassLogger();
 

@@ -1,13 +1,13 @@
 ﻿using Dapper;
-using Demo.GestaoEscolar.Infra.Data;
+using Demo.GestaoEscolar.Infra.Dapper.Data.PessoasFisicas;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Finders
+namespace Demo.GestaoEscolar.Infra.Dapper.Data.Alunos
 {
-	public class AlunoFinder : IAlunoFinder
+    public class AlunoFinder : IAlunoFinder
 	{
 		private readonly AppConnectionString _appConnectionString;
 

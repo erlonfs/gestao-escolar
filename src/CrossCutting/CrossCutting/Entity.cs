@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public class Entity<TId> : IEquatable<Entity<TId>>
 	{

@@ -1,12 +1,12 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 {
-	public class Sala : Entity<Guid>
+    public class Sala : Entity<Guid>
 	{
 		public int Id { get; private set; }
 

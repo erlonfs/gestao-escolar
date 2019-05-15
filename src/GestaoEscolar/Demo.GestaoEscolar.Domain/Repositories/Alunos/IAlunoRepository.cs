@@ -1,9 +1,9 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 
 namespace Demo.GestaoEscolar.Domain.Repositories.Alunos
 {
-	public interface IAlunoRepository : IRepository<Aluno>
+    public interface IAlunoRepository : IRepository<Aluno>
 	{
 		
 	}

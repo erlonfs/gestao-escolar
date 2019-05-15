@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SharedKernel.Common;
+﻿using CrossCutting;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Infra.EF.Repositories
 {
-	public class Repository<TEntity> where TEntity : Entity<Guid>
+    public class Repository<TEntity> where TEntity : Entity<Guid>
 	{
 		private DbSet<TEntity> _dbSet;
 		private DbContext _context;

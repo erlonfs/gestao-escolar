@@ -3,13 +3,12 @@
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.2</TargetFramework>
 		<Configurations>Debug;Release;Development;Staging;Production</Configurations>
+		<AssemblyName>CrossCutting</AssemblyName>
+		<RootNamespace>CrossCutting</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Aggregates\Alunos\" />
-		<Folder Include="Aggregates\PessoasFisicas\" />
-		<Folder Include="ValueObjects\" />
-		<Folder Include="Services\" />
+	  <PackageReference Include="Autofac" Version="4.9.2" />
 	</ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Data
+namespace Demo.GestaoEscolar.Infra.Dapper.Data.Escolas
 {
 	public interface IEscolaFinder
 	{

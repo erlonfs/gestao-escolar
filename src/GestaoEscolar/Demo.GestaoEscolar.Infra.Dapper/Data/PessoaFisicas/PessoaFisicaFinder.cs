@@ -1,12 +1,11 @@
 ﻿using Dapper;
-using Demo.GestaoEscolar.Infra.Data;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Finders
+namespace Demo.GestaoEscolar.Infra.Dapper.Data.PessoasFisicas
 {
-	public class PessoaFisicaFinder : IPessoaFisicaFinder
+    public class PessoaFisicaFinder : IPessoaFisicaFinder
 	{
 		private readonly AppConnectionString _appConnectionString;
 

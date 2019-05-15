@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using CrossCutting;
 using Demo.GestaoEscolar.Api;
 using Demo.GestaoEscolar.Api.Controllers;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
-using Demo.GestaoEscolar.Infra;
+using Demo.GestaoEscolar.Infra.Dapper;
 using Demo.GestaoEscolar.Infra.EF;
 using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +12,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SharedKernel.Common;
 using Swashbuckle.AspNetCore.Swagger;
 
 public class Startup

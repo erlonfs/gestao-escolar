@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Autofac" Version="4.9.1" />
+		<PackageReference Include="Autofac" Version="4.9.2" />
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
 		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.2" />
 		<PackageReference Include="NLog.Config" Version="4.5.11" />
@@ -38,11 +38,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\SharedKernel\SharedKernel.Common\SharedKernel.Common.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj" />
 		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj" />
-		<ProjectReference Include="..\Demo.GestaoEscolar.Infra\Demo.GestaoEscolar.Infra.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

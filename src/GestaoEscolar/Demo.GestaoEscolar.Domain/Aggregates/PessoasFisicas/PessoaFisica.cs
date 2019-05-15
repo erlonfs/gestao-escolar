@@ -1,4 +1,4 @@
-﻿using SharedKernel.Common;
+﻿using CrossCutting;
 using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas

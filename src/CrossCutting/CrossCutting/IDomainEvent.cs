@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public interface IDomainEvent
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public interface IRepository<T>
 	{

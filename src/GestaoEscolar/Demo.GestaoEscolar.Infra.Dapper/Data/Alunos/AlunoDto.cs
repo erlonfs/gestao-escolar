@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Demo.GestaoEscolar.Infra.Dapper.Data.PessoasFisicas;
+using System;
 
-namespace Demo.GestaoEscolar.Infra.Data
+namespace Demo.GestaoEscolar.Infra.Dapper.Data.Alunos
 {
 	public class AlunoDto
 	{

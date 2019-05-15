@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CrossCutting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SharedKernel.Common;
 
 namespace Demo.GestaoEscolar.Api.Controllers
 {
-	public class ApiExceptionFilter : ExceptionFilterAttribute
+    public class ApiExceptionFilter : ExceptionFilterAttribute
 	{
 		public override void OnException(ExceptionContext context)
 		{

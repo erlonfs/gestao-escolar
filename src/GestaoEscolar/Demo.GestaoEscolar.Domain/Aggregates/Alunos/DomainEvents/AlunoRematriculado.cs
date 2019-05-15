@@ -1,9 +1,9 @@
-﻿using SharedKernel.Common;
+﻿using CrossCutting;
 using System;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 {
-	public class AlunoRematriculado : IDomainEvent
+    public class AlunoRematriculado : IDomainEvent
 	{
 		public Guid AggregateId { get; }
 		public Aluno Aluno { get; }

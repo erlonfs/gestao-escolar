@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public interface IHandler<T> where T : IDomainEvent
 	{

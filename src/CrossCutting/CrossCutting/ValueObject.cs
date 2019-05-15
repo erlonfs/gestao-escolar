@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public abstract class ValueObject<T> : IEquatable<T>
 	  where T : ValueObject<T>

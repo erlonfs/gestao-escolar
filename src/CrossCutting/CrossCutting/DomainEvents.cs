@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SharedKernel.Common
+namespace CrossCutting
 {
 	public class DomainEvents
 	{

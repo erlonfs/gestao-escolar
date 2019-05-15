@@ -1,4 +1,4 @@
-﻿namespace SharedKernel.Common.ValueObjects
+﻿namespace CrossCutting.ValueObjects
 {
 	public enum Mes
     {
