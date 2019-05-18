@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using Demo.GestaoEscolar.Domain.Finders;
+using Demo.GestaoEscolar.Domain.Finders.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Data.Escolas
+namespace Demo.GestaoEscolar.Infra.Dapper.Data
 {
     public class EscolaFinder : IEscolaFinder
     {

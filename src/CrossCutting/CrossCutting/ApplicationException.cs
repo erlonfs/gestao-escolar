@@ -8,4 +8,11 @@ namespace CrossCutting
 		{
 		}
     }
+
+	public class ServiceMessageBusUnavailableException : Exception
+	{
+		public ServiceMessageBusUnavailableException() : base()
+		{
+		}
+	}
 }

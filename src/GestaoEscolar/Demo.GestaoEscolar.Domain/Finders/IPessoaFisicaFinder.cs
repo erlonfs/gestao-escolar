@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Demo.GestaoEscolar.Domain.Finders.Dtos;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Data.PessoasFisicas
+namespace Demo.GestaoEscolar.Domain.Finders
 {
 	public interface IPessoaFisicaFinder
 	{

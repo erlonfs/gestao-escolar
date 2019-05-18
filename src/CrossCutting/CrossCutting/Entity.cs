@@ -6,6 +6,11 @@ namespace CrossCutting
 	{
 		private TId _entityId;
 
+		protected Entity()
+		{
+
+		}
+
 		protected Entity(TId entityId)
 		{
 			if (Equals(entityId, default(TId)))
@@ -14,11 +19,6 @@ namespace CrossCutting
 			}
 
 			_entityId = entityId;
-		}
-
-		protected Entity()
-		{
-
 		}
 
 		public TId EntityId

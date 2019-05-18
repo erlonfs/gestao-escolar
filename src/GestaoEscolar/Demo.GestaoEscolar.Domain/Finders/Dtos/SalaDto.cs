@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Data.Escolas
+namespace Demo.GestaoEscolar.Domain.Finders.Dtos
 {
 	public class SalaDto
 	{

@@ -14,10 +14,6 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 		public string Sexo { get; private set; }
 		public DateTime DataNascimento { get; private set; }
 
-		//public virtual Filiacao Filiacao { get; private set; }
-		//public virtual Nacionalidade Nacionalidade { get; private set; }
-		//public virtual Endereco Endereco { get; private set; }
-
 		protected PessoaFisica()
 		{
 
@@ -38,7 +34,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 
 		}
 
-		public void Alterar(Guid id, string nome, string nomeSocial, string sexo, DateTime dataNascimento)
+		public void Alterar(string nome, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
 			Nome = nome;
 			NomeSocial = nomeSocial;

@@ -9,4 +9,8 @@
     <PackageReference Include="Dapper" Version="1.60.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

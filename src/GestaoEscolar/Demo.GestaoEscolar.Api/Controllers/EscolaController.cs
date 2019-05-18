@@ -1,7 +1,8 @@
 ﻿using CrossCutting;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+using Demo.GestaoEscolar.Domain.Finders;
+using Demo.GestaoEscolar.Domain.Finders.Dtos;
 using Demo.GestaoEscolar.Domain.Services.Escolas;
-using Demo.GestaoEscolar.Infra.Dapper.Data.Escolas;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api.Controllers
 {
-    [Produces("application/json")]
+	[Produces("application/json")]
 	[Route("api/escolas")]
 	public class EscolaController : BaseApiController
 	{

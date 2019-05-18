@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Data.Escolas
+namespace Demo.GestaoEscolar.Domain.Finders.Dtos
 {
 	public class EscolaDto
 	{

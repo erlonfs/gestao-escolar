@@ -29,6 +29,11 @@ namespace Demo.GestaoEscolar.Api
 					{
 						await _dbContext.SaveChangesAsync();
 
+						if(!await _messageBus.IsAliveAsync())
+						{
+							throw new ServiceMessageBusUnavailableException();
+						}
+
 						transaction.Commit();
 
 						foreach (var e in DomainEvents.GetEvents())

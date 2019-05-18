@@ -1,4 +1,5 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
@@ -15,7 +16,7 @@ using Xunit;
 
 namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 {
-	public class Quando_matricular_aluno
+	public class Quando_transferir_aluno
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -46,7 +47,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 
 		private AlunoService _service;
 
-		public Quando_matricular_aluno()
+		public Quando_transferir_aluno()
 		{
 			_pessoaFisica = new PessoaFisica(_pessoaFisicaId, _nome, _cpf, _nomeSocial, _sexo, _dataNascimento);
 			_responsavel = new PessoaFisica(_responsavelId, _responsavelNome, _responsavelCpf, _responsavelNomeSocial, _responsavelSexo, _responsavelDataNascimento);
@@ -54,13 +55,15 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 			_escola = new Escola(_escolaId, _escolaNome);
 			_escola.AdicionarSala(_salaId, _salaFaseAno, Turno.Matutino);
 
+			_aluno = new Aluno(_alunoId, _pessoaFisica, _responsavel, 1334);
+
 			var mockAlunoRepository = new Mock<IAlunoRepository>();
 			var mockPessoaFisicaRepository = new Mock<IPessoaFisicaRepository>();
 			var mockEscolaRepository = new Mock<IEscolaRepository>();
 			var mockMatriculaService = new Mock<IMatriculaService>();
 
-			mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
-				.Callback((Aluno a) => { _aluno = a; });
+			mockAlunoRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
+				.Returns(Task.FromResult(_aluno));
 
 			mockPessoaFisicaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns((Guid entityId) =>
@@ -75,6 +78,24 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 			mockEscolaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns(Task.FromResult(_escola));
 
+			mockEscolaRepository.Setup(x => x.ObterPorAlunoIdAsync(It.IsAny<Guid>()))
+				.Returns((Guid entityId) =>
+				{
+					if (entityId == _alunoId) return Task.FromResult(_escola);
+
+					return Task.FromResult<Escola>(null);
+
+				});
+
+			mockEscolaRepository.Setup(x => x.RemoverAlunoPorAsync(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns((Guid escola, Guid alunoId) =>
+			{
+				var sala = _escola.Salas.SingleOrDefault(x => x.Alunos.Any(y => y.Aluno.EntityId == alunoId));
+
+				sala.Alunos.Remove(sala.Alunos.SingleOrDefault(x => x.Aluno.EntityId == alunoId));
+
+				return Task.CompletedTask;
+			});
+
 			mockMatriculaService.Setup(x => x.GerarMatriculaAsync())
 				.Returns(Task.FromResult(_matricula));
 
@@ -83,39 +104,22 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 										mockEscolaRepository.Object,
 										mockMatriculaService.Object);
 
-			CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisicaId, _responsavelId,  _escolaId, _salaId).Wait());
+			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisicaId, _responsavelId, _escolaId, _salaId).Wait());
+			TestAsyncHelper.CallSync(() => _service.TransferirAsync(_alunoId).Wait());
 
 		}
 
 		[Fact]
-		public void Quando_matricular_aluno_devera_constar_pessoaFisica()
+		public void Quando_transferir_aluno_devera_constar_situacao_transferido()
 		{
-			_aluno.PessoaFisica.Should().Be(_pessoaFisica);
+			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Transferido);
 		}
 
 		[Fact]
-		public void Quando_matricular_aluno_devera_constar_matricula()
-		{
-			_aluno.Matricula.Should().Be(_matricula);
-		}
-
-		[Fact]
-		public void Quando_matricular_aluno_devera_constar_situacao_matriculado()
-		{
-			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Matriculado);
-		}
-
-		[Fact]
-		public void Quando_matricular_aluno_devera_constar_na_escola_e_sala()
+		public void Quando_transferir_aluno_nao_devera_constar_na_escola_antiga()
 		{
 			var sala = _escola.Salas.SingleOrDefault(x => x.EntityId == _salaId);
-			sala.Alunos.Select(x => x.Aluno).Should().Contain(_aluno);
-		}
-
-		protected static void CallSync(Action target)
-		{
-			var task = new Task(target);
-			task.RunSynchronously();
+			sala.Alunos.Select(x => x.Aluno).Should().NotContain(_aluno);
 		}
 	}
 }
