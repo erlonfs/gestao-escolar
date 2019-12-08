@@ -32,7 +32,7 @@ namespace CrossCutting
 			_actions.Clear();
 		}
 
-		public void ClearEvents()
+		public static void ClearEvents()
 		{
 			_events.Clear();
 		}

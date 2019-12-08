@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Api
 {
-    public class UnitOfWork : IUnitOfWork
+	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly DbContext _dbContext;
 		private readonly IMessageBus _messageBus;
@@ -29,7 +29,7 @@ namespace Demo.GestaoEscolar.Api
 					{
 						await _dbContext.SaveChangesAsync();
 
-						if(!await _messageBus.IsAliveAsync())
+						if (!await _messageBus.IsAliveAsync())
 						{
 							throw new ServiceMessageBusUnavailableException();
 						}
@@ -40,6 +40,8 @@ namespace Demo.GestaoEscolar.Api
 						{
 							await _messageBus.PublishAsync(e);
 						}
+
+						DomainEvents.ClearEvents();
 
 					}
 					catch (Exception)

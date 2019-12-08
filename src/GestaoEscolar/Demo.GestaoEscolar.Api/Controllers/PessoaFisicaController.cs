@@ -41,6 +41,17 @@ namespace Demo.GestaoEscolar.Api.Controllers
 
 		}
 
+		[HttpPut]
+		[Route("{id:guid}/alterar-cpf")]
+		public async Task<Guid> AlterarCpfAsync(Guid id, string cpf)
+		{
+			await _pessoaFisicaService.AlterarCpfAsync(id, cpf);
+			await _unitOfWork.CommitAsync();
+
+			return id;
+
+		}
+
 		[HttpGet]
 		[Route("")]
 		public async Task<IEnumerable<PessoaFisicaDto>> ObterAsync()
