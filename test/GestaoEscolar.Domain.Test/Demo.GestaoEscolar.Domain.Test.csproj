@@ -18,6 +18,7 @@
 
 	<ItemGroup>
 		<Folder Include="Aggregates\Alunos\" />
+		<Folder Include="Services\Alunos\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,7 +33,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\src\GestaoEscolar\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj" />
-	  <ProjectReference Include="..\..\src\GestaoEscolar\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj" />
 	</ItemGroup>
 
 </Project>

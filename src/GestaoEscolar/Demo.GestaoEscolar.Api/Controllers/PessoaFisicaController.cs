@@ -17,15 +17,13 @@ namespace Demo.GestaoEscolar.Api.Controllers
 	{
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IPessoaFisicaService _pessoaFisicaService;
-		private readonly IPessoaFisicaFinder _pessoaFisicaFinder;
+	
 
 		public PessoaFisicaController(IUnitOfWork unitOfWork,
-									 IPessoaFisicaService pessoaFisicaService,
-									 IPessoaFisicaFinder pessoaFisicaFinder)
+									 IPessoaFisicaService pessoaFisicaService)
 		{
 			_unitOfWork = unitOfWork;
 			_pessoaFisicaService = pessoaFisicaService;
-			_pessoaFisicaFinder = pessoaFisicaFinder;
 		}
 
 		[HttpPost]
@@ -54,12 +52,14 @@ namespace Demo.GestaoEscolar.Api.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public async Task<IEnumerable<PessoaFisicaDto>> ObterAsync()
+		public Task<IEnumerable<PessoaFisicaDto>> ObterAsync()
 		{
-			var result = await _pessoaFisicaFinder.ObterAsync();
-			if (result == null || !result.Any()) NotFound();
+			//var result = await _pessoaFisicaFinder.ObterAsync();
+			//if (result == null || !result.Any()) NotFound();
 
-			return result;
+			//return result;
+
+			throw new NotImplementedException();
 
 		}
 	}

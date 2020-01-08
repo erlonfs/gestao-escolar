@@ -33,6 +33,9 @@
 		<PackageReference Include="MassTransit.RabbitMQ" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.5" />
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+		<PackageReference Include="MongoDB.Bson" Version="2.10.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.10.0" />
+		<PackageReference Include="MongoDB.Driver.Core" Version="2.10.0" />
 		<PackageReference Include="NLog.Config" Version="4.6.3" />
 		<PackageReference Include="NLog.Web.AspNetCore" Version="4.8.2" />
 		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.1" />
@@ -42,8 +45,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj" />
-		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj" />
-		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj" />
+		<ProjectReference Include="..\Demo.GestaoEscolar.Infra.MongoDb\Demo.GestaoEscolar.Infra.MongoDb.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

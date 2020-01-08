@@ -1,13 +1,11 @@
-﻿using CrossCutting;
+﻿using System;
+using CrossCutting;
 using Demo.GestaoEscolar.Domain.ValueObjects;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {
 	public class PessoaFisica : Aggregate<Guid>
 	{
-		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
 
 		public string Nome { get; private set; }		
@@ -15,11 +13,6 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 		public string NomeSocial { get; private set; }
 		public string Sexo { get; private set; }
 		public DateTime DataNascimento { get; private set; }
-
-		protected PessoaFisica()
-		{
-
-		}
 
 		public PessoaFisica(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
