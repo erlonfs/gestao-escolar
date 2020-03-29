@@ -1,5 +1,7 @@
 ﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.ValueObjects;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {
@@ -8,8 +10,8 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
 
-		public string Nome { get; private set; }
-		public string Cpf { get; private set; }
+		public string Nome { get; private set; }		
+		public virtual Cpf Cpf { get; private set; }
 		public string NomeSocial { get; private set; }
 		public string Sexo { get; private set; }
 		public DateTime DataNascimento { get; private set; }
@@ -25,7 +27,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 			DataCriacao = DateTime.Now;
 
 			Nome = nome;
-			Cpf = cpf;
+			Cpf = new Cpf(cpf);
 			NomeSocial = nomeSocial;
 			Sexo = sexo;
 			DataNascimento = dataNascimento;
@@ -47,7 +49,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 
 		public void AlterarCpf(string novoCpf)
 		{
-			Cpf = novoCpf;
+			Cpf = new Cpf(novoCpf);
 
 			DomainEvents.Raise(new PessoaFisicaCpfAlterado(EntityId, this));
 

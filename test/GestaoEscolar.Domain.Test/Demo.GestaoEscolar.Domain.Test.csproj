@@ -19,7 +19,6 @@
 
 	<ItemGroup>
 		<Folder Include="Aggregates\Alunos\" />
-		<Folder Include="ValueObjects\" />
 	</ItemGroup>
 
 	<ItemGroup>

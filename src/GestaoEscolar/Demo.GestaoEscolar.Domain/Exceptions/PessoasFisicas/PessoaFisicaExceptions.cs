@@ -6,4 +6,9 @@ namespace Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas
 	{
 		public PessoaFisicaNaoEncontradaException() : base("Pessoa física não encontrada.") { }
 	}
+
+	public class PessoaFisicaCpfJaExistenteException : ApplicationException
+	{
+		public PessoaFisicaCpfJaExistenteException() : base("Existe uma pessoa física com o cpf informado.") { }
+	}
 }

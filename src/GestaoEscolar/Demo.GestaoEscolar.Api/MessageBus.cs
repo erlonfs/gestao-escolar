@@ -1,10 +1,12 @@
-﻿using CrossCutting;
-using NLog;
+﻿using System;
 using System.Threading.Tasks;
+using CrossCutting;
+using MassTransit;
+using NLog;
 
 namespace Demo.GestaoEscolar.Api
 {
-    public class MessageBus : IMessageBus
+	public class MessageBus : IMessageBus
 	{
 		private Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -14,11 +16,25 @@ namespace Demo.GestaoEscolar.Api
 			return Task.FromResult(true);
 		}
 
-		public Task PublishAsync<T>(T e)
+		public async Task PublishAsync<T>(T e)
 		{
-			_logger.Info(e.GetType().ToString(), e);
 
-			return Task.CompletedTask;
+			var busControl = Bus.Factory.CreateUsingRabbitMq(cfg => cfg.Host("rabbitmq://10.0.75.1"));
+			await busControl.StartAsync();
+
+			try
+			{
+				await busControl.Publish(e);
+			}
+			catch (Exception ex)
+			{
+				_logger.Info(e.GetType().ToString(), $"Ocorreu um erro ao processar o evento {e}. Erro {ex.Message} InnerException {ex.InnerException}");
+			}
+			finally
+			{
+				await busControl.StopAsync();
+			}
+
 		}
 	}
 }
