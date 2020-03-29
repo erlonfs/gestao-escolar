@@ -4,7 +4,7 @@ using CrossCutting;
 using MassTransit;
 using NLog;
 
-namespace Demo.GestaoEscolar.Api
+namespace Demo.GestaoEscolar.WebApplication
 {
 	public class MessageBus : IMessageBus
 	{
