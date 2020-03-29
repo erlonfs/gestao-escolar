@@ -19,7 +19,7 @@ namespace Demo.GestaoEscolar.WebApplication
 		public async Task PublishAsync<T>(T e)
 		{
 
-			var busControl = Bus.Factory.CreateUsingRabbitMq(cfg => cfg.Host("rabbitmq://10.0.75.1"));
+			var busControl = Bus.Factory.CreateUsingRabbitMq(cfg => cfg.Host("rabbitmq://127.0.0.1"));
 			await busControl.StartAsync();
 
 			try
