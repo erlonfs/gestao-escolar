@@ -4,7 +4,7 @@ sqlserver:
         - 1433:1433
     environment:
         - ACCEPT_EULA=Y
-        - SA_PASSWORD=GuiGui@2016
+        - SA_PASSWORD=Mz28st8bnHUC8xW
 rabbitmq:
     image: rabbitmq:3-management
     ports:
@@ -12,3 +12,11 @@ rabbitmq:
         - 15672:15672
     volumes:
         - /docker/rabbitmq/data:/var/lib/rabbitmq       
+        
+  
+  
+#SQL Server 
+#Server=127.0.0.1,1433;
+#Database=Master;
+#User Id=SA;
+#Password=Mz28st8bnHUC8xW

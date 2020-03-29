@@ -1,15 +1,15 @@
 ﻿using CrossCutting;
-using Demo.GestaoEscolar.Api.Dtos;
 using Demo.GestaoEscolar.Domain.Finders;
 using Demo.GestaoEscolar.Domain.Finders.Dtos;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
+using Demo.GestaoEscolar.WebApplication.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Api.Controllers
+namespace Demo.GestaoEscolar.WebApplication.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/pessoas-fisicas")]

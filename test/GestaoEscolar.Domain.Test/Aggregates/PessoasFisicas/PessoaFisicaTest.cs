@@ -33,7 +33,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 
 			_aggregate.EntityId.Should().Be(_pessoaFisicaId);
 			_aggregate.Nome.Should().Be(_nome);
-			_aggregate.Cpf.Should().Be(_cpf);
+			_aggregate.Cpf.ToString().Should().Be(_cpf);
 			_aggregate.NomeSocial.Should().Be(_nomeSocial);
 			_aggregate.Sexo.Should().Be(_sexo);
 			_aggregate.DataNascimento.Should().Be(_dataNasc);
@@ -59,7 +59,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 
 			_aggregate.AlterarCpf(_cpfAlterado);
 
-			_aggregate.Cpf.Should().Be(_cpfAlterado);
+			_aggregate.Cpf.ToString().Should().Be(_cpfAlterado);
 
 		}
 	}

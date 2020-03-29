@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Demo.GestaoEscolar.Api.Dtos
+namespace Demo.GestaoEscolar.WebApplication.Dtos
 {
 	public class CriarPessoaFisicaDto
 	{

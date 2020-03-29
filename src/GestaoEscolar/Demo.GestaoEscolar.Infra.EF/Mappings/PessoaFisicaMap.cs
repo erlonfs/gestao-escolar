@@ -18,6 +18,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Mappings
 			builder.Property(x => x.Nome);
 			builder.Property(x => x.NomeSocial);
 			builder.Property(x => x.Sexo);
+			builder.Ignore(x => x.Cpf);
 			builder.Property(x => x.DataNascimento);
 
 			builder.OwnsOne(x => x.Cpf, a =>
