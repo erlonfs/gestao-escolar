@@ -1,7 +1,8 @@
 ﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using System;
 
-namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
+namespace Demo.GestaoEscolar.Agregates.Alunos
 {
     public class AlunoMatriculado : IDomainEvent
 	{

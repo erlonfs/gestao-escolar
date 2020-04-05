@@ -1,7 +1,7 @@
 ﻿using CrossCutting;
+using Demo.GestaoEscolar.Agregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.ValueObjects;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {

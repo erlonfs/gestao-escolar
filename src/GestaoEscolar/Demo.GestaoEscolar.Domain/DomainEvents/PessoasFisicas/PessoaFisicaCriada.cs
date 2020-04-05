@@ -1,7 +1,8 @@
 ﻿using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using System;
 
-namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
+namespace Demo.GestaoEscolar.Agregates.PessoasFisicas
 {
     public class PessoaFisicaCriada : IDomainEvent
 	{

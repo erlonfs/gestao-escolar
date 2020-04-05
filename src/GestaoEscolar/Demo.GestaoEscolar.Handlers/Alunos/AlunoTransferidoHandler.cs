@@ -1,11 +1,11 @@
 ﻿using CrossCutting;
-using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Agregates.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using System.Threading.Tasks;
 
 namespace Demo.GestaoEscolar.Handlers.Alunos
 {
-    public class AlunoTransferidoHandler : IHandler<AlunoTransferido>
+	public class AlunoTransferidoHandler : IHandler<AlunoTransferido>
 	{
 		private IAlunoRepository _alunoRepository;
 

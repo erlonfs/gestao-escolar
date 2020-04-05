@@ -1,4 +1,4 @@
-﻿namespace CrossCutting.ValueObjects
+﻿namespace Demo.GestaoEscolar.Domain.ValueObjects
 {
 	public enum Mes
     {

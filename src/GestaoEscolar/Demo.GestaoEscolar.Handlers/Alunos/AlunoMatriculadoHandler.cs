@@ -1,5 +1,5 @@
 ﻿using CrossCutting;
-using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Agregates.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using System.Threading.Tasks;
 

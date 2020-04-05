@@ -1,7 +1,8 @@
-﻿using System;
+﻿using CrossCutting;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CrossCutting.ValueObjects
+namespace Demo.GestaoEscolar.Domain.ValueObjects
 {
 	[NotMapped]
 	public class Ano : ValueObject<Ano>
