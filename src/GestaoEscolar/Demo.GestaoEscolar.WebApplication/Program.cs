@@ -1,12 +1,12 @@
-﻿using Autofac.Extensions.DependencyInjection;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using NLog;
 using NLog.Web;
 using System;
 using System.IO;
 
-namespace Demo.GestaoEscolar.Api
+namespace Demo.GestaoEscolar.WebApplication
 {
 	public class Program
 	{
@@ -22,15 +22,18 @@ namespace Demo.GestaoEscolar.Api
 				environmentName = "Production";
 			#endif
 
-			var host = new WebHostBuilder()
-				.UseKestrel()
-				.UseEnvironment(environmentName)
-				.ConfigureServices(services => services.AddAutofac())
-				.UseContentRoot(Directory.GetCurrentDirectory())
-				.UseIISIntegration()
-				.UseStartup<Startup>()
-				.UseNLog()
-				.Build();
+			var host = Host.CreateDefaultBuilder(args)
+							.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+							.ConfigureWebHostDefaults(webHostBuilder =>
+								{
+									webHostBuilder
+										.UseContentRoot(Directory.GetCurrentDirectory())
+										.UseEnvironment(environmentName)
+										.UseIISIntegration()
+										.UseStartup<Startup>()
+										.UseNLog();
+								})
+							.Build();
 
 			var logger = LogManager.GetCurrentClassLogger();
 
@@ -47,7 +50,7 @@ namespace Demo.GestaoEscolar.Api
 			{
 				LogManager.Shutdown();
 			}
-			
+
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 		public int Id { get; private set; }
 		public DateTime DataCriacao { get; private set; }
 
-		public string Nome { get; private set; }		
+		public string Nome { get; private set; }
 		public virtual Cpf Cpf { get; private set; }
 		public string NomeSocial { get; private set; }
 		public string Sexo { get; private set; }

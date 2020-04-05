@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Api
+namespace Demo.GestaoEscolar.WebApplication
 {
 	public class UnitOfWork : IUnitOfWork
 	{

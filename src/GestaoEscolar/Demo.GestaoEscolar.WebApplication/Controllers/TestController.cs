@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Api.Controllers
+namespace Demo.GestaoEscolar.WebApplication.Controllers
 {
 	[Produces("application/json")]
 	[Route("api/test")]
