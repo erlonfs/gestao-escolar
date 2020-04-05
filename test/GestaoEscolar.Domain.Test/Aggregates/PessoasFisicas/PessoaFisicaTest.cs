@@ -1,4 +1,5 @@
 ﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.ValueObjects;
 using FluentAssertions;
 using System;
 using Xunit;
@@ -19,7 +20,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 		private string _nomeSocialAlterado = null;
 		private string _sexoAlterado = "F";
 		private DateTime _dataNascAlterado = new DateTime(1998, 05, 30);
-		private string _cpfAlterado = "18284353848";
+		private Cpf _cpfAlterado = "20782878300";
 
 		public PessoaFisicaTest()
 		{
@@ -59,7 +60,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 
 			_aggregate.AlterarCpf(_cpfAlterado);
 
-			_aggregate.Cpf.ToString().Should().Be(_cpfAlterado);
+			_aggregate.Cpf.Should().Be(_cpfAlterado);
 
 		}
 	}
