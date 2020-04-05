@@ -4,7 +4,7 @@ using FluentAssertions;
 using System;
 using Xunit;
 
-namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
+namespace Demo.GestaoEscolar.Domain.Test.Aggregates
 {
 	public class PessoaFisicaTest
 	{
@@ -28,7 +28,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 		}
 
 		[Fact]
-		public void Quando_criar_pessoa_fisica()
+		public void criar_pessoa_fisica__com_todos_os_parametros__deve_atribuir_os_valores()
 		{
 			_aggregate = new PessoaFisica(_pessoaFisicaId, _nome, _cpf, _nomeSocial, _sexo, _dataNasc);
 
@@ -41,7 +41,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 		}
 
 		[Fact]
-		public void Quando_alterar_pessoa_fisica()
+		public void alterar_pessoa_fisica__com_todos_os_parametros__deve_atribuir_os_valores()
 		{
 			_aggregate = new PessoaFisica(_pessoaFisicaId, _nome, _cpf, _nomeSocial, _sexo, _dataNasc);
 
@@ -54,7 +54,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates.PessoasFisicas
 		}
 
 		[Fact]
-		public void Quando_alterar_cpf_pessoa_fisica()
+		public void alterar_cpf_pessoa_fisica__com_novo_numero__deve_alterar_o_numero_cpf()
 		{
 			_aggregate = new PessoaFisica(_pessoaFisicaId, _nome, _cpf, _nomeSocial, _sexo, _dataNasc);
 

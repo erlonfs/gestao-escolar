@@ -7,17 +7,18 @@ namespace Demo.GestaoEscolar.Domain.Test.ValueObjects
 {
 	public class CpfTest
 	{
-		private Cpf _cpf;
-
-
-		[Fact]
-		public void Quando_criar_um_cpf()
+		[Theory]
+		[InlineData("20782878300", "20782878300")]
+		[InlineData("207.82878300", "20782878300")]
+		[InlineData("207.828.78300", "20782878300")]
+		[InlineData("207.828.783-00", "20782878300")]
+		[InlineData("207828783-00", "20782878300")]
+		[InlineData("207.828783-00", "20782878300")]
+		public void criar_um_cpf__com_numero_valido__deve_constar_o_mesmo(string entrada, string numero)
 		{
-			var numero = "03443703135";
+			var cpf = new Cpf(entrada);
 
-			_cpf = new Cpf(numero);
-
-			_cpf.ToString().Should().Be(numero);
+			cpf.Should().Be(new Cpf(numero));
 
 		}
 
@@ -26,7 +27,7 @@ namespace Demo.GestaoEscolar.Domain.Test.ValueObjects
 		[InlineData("")]
 		[InlineData(" ")]
 		[InlineData("	")]
-		public void Quando_criar_um_cpf_nulo_ou_vazio(string numero)
+		public void criar_um_cpf__com_numero_nulo_ou_vazio__deve_lancar_erro(string numero)
 		{
 			Action act = () => { new Cpf(numero); };
 
@@ -58,26 +59,11 @@ namespace Demo.GestaoEscolar.Domain.Test.ValueObjects
 		[InlineData("99999999999")]
 		[InlineData("012345678999")]
 		[InlineData("0123456789994")]
-		public void Quando_criar_um_cpf_invalido(string numero)
+		public void criar_um_cpf__com_numero_invalido__deve_lancar_erro(string numero)
 		{
 			Action act = () => { new Cpf(numero); };
 
 			act.Should().Throw<CpfInvalidoException>();
-
-		}
-
-		[Theory]
-		[InlineData("20782878300", "20782878300")]
-		[InlineData("207.82878300", "20782878300")]
-		[InlineData("207.828.78300", "20782878300")]
-		[InlineData("207.828.783-00", "20782878300")]
-		[InlineData("207828783-00", "20782878300")]
-		[InlineData("207.828783-00", "20782878300")]
-		public void Quando_criar_um_cpf_valido(string entrada, string numero)
-		{
-			var cpf = new Cpf(entrada);
-
-			cpf.Should().Be(new Cpf(numero));
 
 		}
 	}

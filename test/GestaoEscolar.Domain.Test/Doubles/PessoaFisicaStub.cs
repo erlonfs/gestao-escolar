@@ -1,7 +1,7 @@
 ﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using System;
 
-namespace Demo.GestaoEscolar.Domain.Test.Doubles.PessoasFisicas
+namespace Demo.GestaoEscolar.Domain.Test.Doubles
 {
 	public static class PessoaFisicaStub
 	{

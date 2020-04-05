@@ -6,7 +6,7 @@ using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
-using Demo.GestaoEscolar.Domain.Test.Doubles.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.Test.Doubles;
 using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using FluentAssertions;
 using Moq;
@@ -15,9 +15,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
+namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 {
-	public class Quando_transferir_aluno
+	public class Transferir_aluno
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -35,7 +35,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 
 		private AlunoService _service;
 
-		public Quando_transferir_aluno()
+		public Transferir_aluno()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;

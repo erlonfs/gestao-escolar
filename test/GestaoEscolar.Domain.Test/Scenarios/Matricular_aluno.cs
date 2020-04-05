@@ -6,7 +6,7 @@ using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
-using Demo.GestaoEscolar.Domain.Test.Doubles.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.Test.Doubles;
 using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using FluentAssertions;
 using Moq;
@@ -15,9 +15,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
+namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 {
-	public class Quando_rematricular_aluno
+	public class Matricular_aluno
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -35,7 +35,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 
 		private AlunoService _service;
 
-		public Quando_rematricular_aluno()
+		public Matricular_aluno()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
@@ -47,9 +47,6 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 			var mockPessoaFisicaRepository = new Mock<IPessoaFisicaRepository>();
 			var mockEscolaRepository = new Mock<IEscolaRepository>();
 			var mockMatriculaService = new Mock<IMatriculaService>();
-
-			mockAlunoRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
-				.Returns(Task.FromResult(_aluno));
 
 			mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
 				.Callback((Aluno a) => { _aluno = a; });
@@ -75,19 +72,30 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Services.Alunos
 										mockEscolaRepository.Object,
 										mockMatriculaService.Object);
 
-			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId, _escolaId, _salaId).Wait());
-			TestAsyncHelper.CallSync(() => _service.RematricularAsync(_alunoId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
+			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
 
 		}
 
 		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_situacao_matriculado()
+		public void Quando_matricular_aluno_devera_constar_pessoaFisica()
+		{
+			_aluno.PessoaFisica.Should().Be(_pessoaFisica);
+		}
+
+		[Fact]
+		public void Quando_matricular_aluno_devera_constar_matricula()
+		{
+			_aluno.Matricula.Should().Be(_matricula);
+		}
+
+		[Fact]
+		public void Quando_matricular_aluno_devera_constar_situacao_matriculado()
 		{
 			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Matriculado);
 		}
 
 		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_na_escola_e_sala()
+		public void Quando_matricular_aluno_devera_constar_na_escola_e_sala()
 		{
 			var sala = _escola.Salas.SingleOrDefault(x => x.EntityId == _salaId);
 			sala.Alunos.Select(x => x.Aluno).Should().Contain(_aluno);
