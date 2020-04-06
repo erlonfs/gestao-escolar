@@ -10,3 +10,6 @@
      steps:
        - checkout
        - run: dotnet build
+     test:
+       override:
+         - dotnet test
