@@ -37,6 +37,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Aggregates
 			_aggregate.Cpf.ToString().Should().Be(_cpf);
 			_aggregate.NomeSocial.Should().Be(_nomeSocial);
 			_aggregate.Sexo.Should().Be(_sexo);
+			_aggregate.DataCriacao.Date.Should().Be(DateTime.Today);
 			_aggregate.DataNascimento.Should().Be(_dataNasc);
 		}
 

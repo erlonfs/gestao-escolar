@@ -2,6 +2,7 @@
 using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
@@ -15,9 +16,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
+namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 {
-	public class Rematricular_aluno
+	public class Matricular_aluno_com_pessoa_fisica_inexistente
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -35,13 +36,10 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 
 		private AlunoService _service;
 
-		public Rematricular_aluno()
+		public Matricular_aluno_com_pessoa_fisica_inexistente()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
-
-			_aluno = new Aluno(_alunoId, _pessoaFisica, _responsavel, _matricula);
-			_aluno.Transferir();
 
 			_escola = new Escola(_escolaId, _escolaNome);
 			_escola.AdicionarSala(_salaId, _salaFaseAno, Turno.Matutino);
@@ -51,16 +49,12 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 			var mockEscolaRepository = new Mock<IEscolaRepository>();
 			var mockMatriculaService = new Mock<IMatriculaService>();
 
-			mockAlunoRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
-				.Returns(Task.FromResult(_aluno));
-
 			mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
 				.Callback((Aluno a) => { _aluno = a; });
 
 			mockPessoaFisicaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns((Guid entityId) =>
 					{
-						if (entityId == _pessoaFisica.EntityId) return Task.FromResult(_pessoaFisica);
 						if (entityId == _responsavel.EntityId) return Task.FromResult(_responsavel);
 
 						return Task.FromResult<PessoaFisica>(null);
@@ -78,21 +72,18 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 										mockEscolaRepository.Object,
 										mockMatriculaService.Object);
 
-			TestAsyncHelper.CallSync(() => _service.RematricularAsync(_alunoId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
-
 		}
 
 		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_situacao_matriculado()
+		public void Deve_lancar_exception()
 		{
-			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Matriculado);
-		}
+			Action act = () =>
+			{
+				_service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId, _escolaId, _salaId).Wait();
+			};
 
-		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_na_escola_e_sala()
-		{
-			var sala = _escola.Salas.SingleOrDefault(x => x.EntityId == _salaId);
-			sala.Alunos.Select(x => x.Aluno).Should().Contain(_aluno);
+			act.Should().Throw<PessoaFisicaNaoEncontradaException>();
+
 		}
 	}
 }

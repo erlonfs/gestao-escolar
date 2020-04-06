@@ -1,7 +1,7 @@
-﻿using CrossCutting;
-using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.Exceptions.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
@@ -11,13 +11,12 @@ using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using FluentAssertions;
 using Moq;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 {
-	public class Rematricular_aluno
+	public class Rematricular_aluno_com_escola_inexistente
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -35,7 +34,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 
 		private AlunoService _service;
 
-		public Rematricular_aluno()
+		public Rematricular_aluno_com_escola_inexistente()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
@@ -68,7 +67,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 					});
 
 			mockEscolaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
-				.Returns(Task.FromResult(_escola));
+				.Returns(Task.FromResult<Escola>(null));
 
 			mockMatriculaService.Setup(x => x.GerarMatriculaAsync())
 				.Returns(Task.FromResult(_matricula));
@@ -77,22 +76,18 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 										mockPessoaFisicaRepository.Object,
 										mockEscolaRepository.Object,
 										mockMatriculaService.Object);
-
-			TestAsyncHelper.CallSync(() => _service.RematricularAsync(_alunoId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
-
 		}
 
 		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_situacao_matriculado()
+		public void Deve_lancar_exception()
 		{
-			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Matriculado);
-		}
+			Action act = () =>
+			{
+				_service.RematricularAsync(_alunoId, _responsavel.EntityId, _escolaId, _salaId).Wait();
+			};
 
-		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_na_escola_e_sala()
-		{
-			var sala = _escola.Salas.SingleOrDefault(x => x.EntityId == _salaId);
-			sala.Alunos.Select(x => x.Aluno).Should().Contain(_aluno);
+			act.Should().Throw<EscolaNaoEncontradaException>();
+
 		}
 	}
 }

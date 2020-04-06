@@ -2,6 +2,8 @@
 using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
+using Demo.GestaoEscolar.Domain.Exceptions.Alunos;
+using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
@@ -17,7 +19,7 @@ using Xunit;
 
 namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 {
-	public class Rematricular_aluno
+	public class Rematricular_aluno_inexistente
 	{
 		private Aluno _aluno;
 		private readonly Guid _alunoId = Guid.NewGuid();
@@ -35,7 +37,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 
 		private AlunoService _service;
 
-		public Rematricular_aluno()
+		public Rematricular_aluno_inexistente()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
@@ -52,7 +54,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 			var mockMatriculaService = new Mock<IMatriculaService>();
 
 			mockAlunoRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
-				.Returns(Task.FromResult(_aluno));
+				.Returns(Task.FromResult<Aluno>(null));
 
 			mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
 				.Callback((Aluno a) => { _aluno = a; });
@@ -60,7 +62,6 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 			mockPessoaFisicaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns((Guid entityId) =>
 					{
-						if (entityId == _pessoaFisica.EntityId) return Task.FromResult(_pessoaFisica);
 						if (entityId == _responsavel.EntityId) return Task.FromResult(_responsavel);
 
 						return Task.FromResult<PessoaFisica>(null);
@@ -77,22 +78,18 @@ namespace Demo.GestaoEscolar.Infra.EF.Test.Scenarios
 										mockPessoaFisicaRepository.Object,
 										mockEscolaRepository.Object,
 										mockMatriculaService.Object);
-
-			TestAsyncHelper.CallSync(() => _service.RematricularAsync(_alunoId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
-
 		}
 
 		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_situacao_matriculado()
+		public void Deve_lancar_exception()
 		{
-			_aluno.SituacaoId.Should().Be((int)AlunoSituacao.Matriculado);
-		}
+			Action act = () =>
+			{
+				_service.RematricularAsync(_alunoId, _responsavel.EntityId, _escolaId, _salaId).Wait();
+			};
 
-		[Fact]
-		public void Quando_rematricular_aluno_devera_constar_na_escola_e_sala()
-		{
-			var sala = _escola.Salas.SingleOrDefault(x => x.EntityId == _salaId);
-			sala.Alunos.Select(x => x.Aluno).Should().Contain(_aluno);
+			act.Should().Throw<AlunoNaoEncontradoException>();
+
 		}
 	}
 }

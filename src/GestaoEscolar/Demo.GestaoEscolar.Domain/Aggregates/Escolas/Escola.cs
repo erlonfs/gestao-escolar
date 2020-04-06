@@ -38,5 +38,11 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 			sala.AdicionarAluno(aluno);
 		}
 
+		public void RemoverAluno(Guid salaId, Aluno aluno)
+		{
+			var sala = Salas.SingleOrDefault(x => x.EntityId == salaId);
+			sala.RemoverAluno(aluno);
+		}
+
 	}
 }
