@@ -32,7 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoEscolar", "GestaoEsco
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Handlers", "src\GestaoEscolar\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj", "{A33550EA-BE6D-498F-8E4C-8083BB51FEDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GestaoEscolar.WebApplication", "src\GestaoEscolar\Demo.GestaoEscolar.WebApplication\Demo.GestaoEscolar.WebApplication.csproj", "{4CEE7897-BFBD-4A18-82DC-70C0896DCD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.WebApplication", "src\GestaoEscolar\Demo.GestaoEscolar.WebApplication\Demo.GestaoEscolar.WebApplication.csproj", "{4CEE7897-BFBD-4A18-82DC-70C0896DCD69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
