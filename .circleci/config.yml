@@ -2,15 +2,25 @@
 
  orbs:
   win: circleci/windows@2.2.0
-
+  
  jobs:
    build:
-     executor: win/default     
-    
+     executor: win/default         
+     environment:
+       BASH_ENV: ~/.bashrc
      steps:
        - checkout
        - run: dotnet build
-       - run: dotnet test
-      
-- store_test_results:
-    path: test-results
+       - run: dotnet test --no-build --logger "trx"
+       - run:
+           name: test results
+           when: always
+           command: |
+               dotnet tool install -g trx2junit
+               echo 'export PATH=/path/to/foo/bin:$PATH' >> $BASH_ENV
+               trx2junit test/GestaoEscolar.Domain.Test/TestResults/*.trx
+       - store_test_results:
+           path: test/GestaoEscolar.Domain.Test/TestResults
+       - store_artifacts:
+           path: test/GestaoEscolar.Domain.Test/TestResults
+           destination: TestResults
