@@ -35,6 +35,11 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 
 		private AlunoService _service;
 
+		private Mock<IAlunoRepository> _mockAlunoRepository = new Mock<IAlunoRepository>();
+		private Mock<IPessoaFisicaRepository> _mockPessoaFisicaRepository = new Mock<IPessoaFisicaRepository>();
+		private Mock<IEscolaRepository> _mockEscolaRepository = new Mock<IEscolaRepository>();
+		private Mock<IMatriculaService> _mockMatriculaService = new Mock<IMatriculaService>();
+
 		public Matricular_aluno()
 		{
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
@@ -43,15 +48,10 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 			_escola = new Escola(_escolaId, _escolaNome);
 			_escola.AdicionarSala(_salaId, _salaFaseAno, Turno.Matutino);
 
-			var mockAlunoRepository = new Mock<IAlunoRepository>();
-			var mockPessoaFisicaRepository = new Mock<IPessoaFisicaRepository>();
-			var mockEscolaRepository = new Mock<IEscolaRepository>();
-			var mockMatriculaService = new Mock<IMatriculaService>();
-
-			mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
+			_mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
 				.Callback((Aluno a) => { _aluno = a; });
 
-			mockPessoaFisicaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
+			_mockPessoaFisicaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns((Guid entityId) =>
 					{
 						if (entityId == _pessoaFisica.EntityId) return Task.FromResult(_pessoaFisica);
@@ -61,19 +61,31 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 
 					});
 
-			mockEscolaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
+			_mockEscolaRepository.Setup(x => x.GetByEntityIdAsync(It.IsAny<Guid>()))
 				.Returns(Task.FromResult(_escola));
 
-			mockMatriculaService.Setup(x => x.GerarMatriculaAsync())
+			_mockMatriculaService.Setup(x => x.GerarMatriculaAsync())
 				.Returns(Task.FromResult(_matricula));
 
-			_service = new AlunoService(mockAlunoRepository.Object,
-										mockPessoaFisicaRepository.Object,
-										mockEscolaRepository.Object,
-										mockMatriculaService.Object);
+			_service = new AlunoService(_mockAlunoRepository.Object,
+										_mockPessoaFisicaRepository.Object,
+										_mockEscolaRepository.Object,
+										_mockMatriculaService.Object);
 
 			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
 
+		}
+
+		[Fact]
+		public void Devera_adicionar_aluno_no_repositorio()
+		{
+			_mockAlunoRepository.Verify(x => x.AddAsync(It.IsAny<Aluno>()), Times.Once);
+		}
+
+		[Fact]
+		public void Devera_gerar_matricula_atraves_do_servico_de_matricula()
+		{
+			_mockMatriculaService.Verify(x => x.GerarMatriculaAsync(), Times.Once);
 		}
 
 		[Fact]
