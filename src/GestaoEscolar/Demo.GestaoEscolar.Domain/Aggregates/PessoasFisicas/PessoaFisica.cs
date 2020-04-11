@@ -32,7 +32,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 			Sexo = sexo;
 			DataNascimento = dataNascimento;
 
-			DomainEvents.Raise(new PessoaFisicaCriada(EntityId, this));
+			RaiseEvent(new PessoaFisicaCriada(EntityId, this));
 
 		}
 
@@ -43,7 +43,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 			Sexo = sexo;
 			DataNascimento = dataNascimento;
 
-			DomainEvents.Raise(new PessoaFisicaAlterada(EntityId, this));
+			RaiseEvent(new PessoaFisicaAlterada(EntityId, this));
 
 		}
 
@@ -51,7 +51,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 		{
 			Cpf = new Cpf(novoCpf);
 
-			DomainEvents.Raise(new PessoaFisicaCpfAlterado(EntityId, this));
+			RaiseEvent(new PessoaFisicaCpfAlterado(EntityId, this));
 
 		}
 	}

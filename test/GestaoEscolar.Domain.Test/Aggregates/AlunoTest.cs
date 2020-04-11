@@ -1,4 +1,6 @@
-﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+﻿using CrossCutting;
+using Demo.GestaoEscolar.Agregates.Alunos;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Test.Doubles;
 using FluentAssertions;

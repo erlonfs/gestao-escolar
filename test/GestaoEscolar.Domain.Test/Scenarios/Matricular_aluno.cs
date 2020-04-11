@@ -1,4 +1,5 @@
-﻿using CrossCutting;
+﻿using AutoFixture;
+using CrossCutting;
 using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
@@ -19,16 +20,15 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 {
 	public class Matricular_aluno
 	{
+		private Fixture _fixture = new Fixture();
+
 		private Aluno _aluno;
-		private readonly Guid _alunoId = Guid.NewGuid();
-		private readonly int _matricula = 7802;
+		private readonly Guid _alunoId;
+		private readonly int _matricula;
 
 		private Escola _escola;
-		private readonly Guid _escolaId = Guid.NewGuid();
-		private readonly string _escolaNome = "Escola Estadual Ana Maria do Couto";
-
-		private readonly Guid _salaId = Guid.NewGuid();
-		private readonly string _salaFaseAno = "8ºANO";
+		private readonly Guid _salaId;
+		private readonly string _salaFaseAno;
 
 		private PessoaFisica _pessoaFisica;
 		private PessoaFisica _responsavel;
@@ -42,10 +42,17 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 
 		public Matricular_aluno()
 		{
+
+			_matricula = _fixture.Create<int>();
+			_alunoId = _fixture.Create<Guid>();
+			_salaId = _fixture.Create<Guid>();
+			_salaFaseAno = _fixture.Create<string>();
+			_escola = _fixture.Create<Escola>();
+
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
+			
 
-			_escola = new Escola(_escolaId, _escolaNome);
 			_escola.AdicionarSala(_salaId, _salaFaseAno, Turno.Matutino);
 
 			_mockAlunoRepository.Setup(x => x.AddAsync(It.IsAny<Aluno>()))
@@ -72,7 +79,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 										_mockEscolaRepository.Object,
 										_mockMatriculaService.Object);
 
-			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId,  _escolaId, _salaId).Wait());
+			TestAsyncHelper.CallSync(() => _service.MatricularAsync(_alunoId, _pessoaFisica.EntityId, _responsavel.EntityId,  _escola.EntityId, _salaId).Wait());
 
 		}
 
