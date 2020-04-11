@@ -1,11 +1,7 @@
-﻿using CrossCutting;
-using Demo.GestaoEscolar.Agregates.Alunos;
-using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
-using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Test.Doubles;
 using FluentAssertions;
 using System;
-using System.Linq;
 using Xunit;
 
 namespace Demo.GestaoEscolar.Domain.Test.Aggregates

@@ -8,7 +8,6 @@ using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Domain.Test.Doubles;
-using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using FluentAssertions;
 using Moq;
 using System;

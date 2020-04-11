@@ -4,7 +4,6 @@ using CrossCutting;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Infra.Dapper;
 using Demo.GestaoEscolar.Infra.EF;
-using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using Demo.GestaoEscolar.WebApplication.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

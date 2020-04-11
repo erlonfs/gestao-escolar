@@ -1,11 +1,10 @@
 ﻿using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
-using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
 using System;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.EF.Services.PessoasFisicas
+namespace Demo.GestaoEscolar.Domain.Services.PessoasFisicas
 {
 	public class PessoaFisicaService : IPessoaFisicaService
 	{

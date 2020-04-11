@@ -1,5 +1,4 @@
-﻿using Demo.GestaoEscolar.Agregates.Alunos;
-using Demo.GestaoEscolar.Agregates.PessoasFisicas;
+﻿using Demo.GestaoEscolar.Agregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Test.Doubles;
 using FluentAssertions;
 using System;

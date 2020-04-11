@@ -1,8 +1,7 @@
-﻿using Demo.GestaoEscolar.Domain.Services.Alunos;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
+namespace Demo.GestaoEscolar.Domain.Services.Alunos
 {
 	public class MatriculaService : IMatriculaService
 	{

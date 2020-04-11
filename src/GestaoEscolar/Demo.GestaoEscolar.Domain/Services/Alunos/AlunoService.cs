@@ -5,11 +5,10 @@ using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
-using Demo.GestaoEscolar.Domain.Services.Alunos;
 using System;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.EF.Services.Alunos
+namespace Demo.GestaoEscolar.Domain.Services.Alunos
 {
 	public class AlunoService : IAlunoService
 	{

@@ -1,19 +1,15 @@
-﻿using CrossCutting;
-using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+﻿using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Exceptions.Alunos;
-using Demo.GestaoEscolar.Domain.Exceptions.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Repositories.Alunos;
 using Demo.GestaoEscolar.Domain.Repositories.Escolas;
 using Demo.GestaoEscolar.Domain.Repositories.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Domain.Test.Doubles;
-using Demo.GestaoEscolar.Infra.EF.Services.Alunos;
 using FluentAssertions;
 using Moq;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
