@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Linq;
 using HandlersAssembly = Demo.GestaoEscolar.Handlers.Foo;
 using InfraDapperAssembly = Demo.GestaoEscolar.Infra.Dapper.Foo;
@@ -34,7 +35,7 @@ namespace Demo.GestaoEscolar.WebApplication
 			this.Configuration = builder.Build();
 		}
 
-		public void ConfigureServices(IServiceCollection services)
+		public virtual IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc(x =>
 			{
@@ -62,9 +63,11 @@ namespace Demo.GestaoEscolar.WebApplication
 			Container = builder.Build();
 
 			DomainEvents.Init(Container.BeginLifetimeScope());
+
+			return new AutofacServiceProvider(Container);
 		}
 
-		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			app.UseMvc();
 
