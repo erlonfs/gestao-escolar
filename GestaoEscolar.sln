@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting", "src\CrossCutting\CrossCutting\CrossCutting.csproj", "{E92DAEBD-FE17-409A-99DB-B679874CE418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{E92DAEBD-FE17-409A-99DB-B679874CE418}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EA0E6969-B3FA-4D95-98D2-BE18D60A25DA}"
 EndProject
@@ -18,21 +18,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{C9D3
 		scripts\003-insert-data.sql = scripts\003-insert-data.sql
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Domain", "src\GestaoEscolar\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj", "{2653BB0A-DDF4-4AEF-8F62-F3D3FF2C322E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Domain", "Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj", "{2653BB0A-DDF4-4AEF-8F62-F3D3FF2C322E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Infra.EF", "src\GestaoEscolar\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj", "{9C30BE08-E9C6-438E-9836-2B626EB7843F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Infra.EF", "Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj", "{9C30BE08-E9C6-438E-9836-2B626EB7843F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Infra.Dapper", "src\GestaoEscolar\Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj", "{0A062C13-207C-4DDF-8274-742CE7F5AAC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Infra.Dapper", "Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj", "{0A062C13-207C-4DDF-8274-742CE7F5AAC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoEscolar", "GestaoEscolar", "{1D4AA8F0-F4EC-4A1E-9B23-AC25C1A7568D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Domain.Test", "test\GestaoEscolar.Domain.Test\Demo.GestaoEscolar.Domain.Test.csproj", "{6E333C7D-2D5A-4DE0-93E1-5E276F9FD28C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Domain.Test", "Demo.GestaoEscolar.Domain.Test\Demo.GestaoEscolar.Domain.Test.csproj", "{6E333C7D-2D5A-4DE0-93E1-5E276F9FD28C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GestaoEscolar", "GestaoEscolar", "{0079050D-2483-475F-9AAC-C7FFD3C7ED49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Handlers", "src\GestaoEscolar\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj", "{A33550EA-BE6D-498F-8E4C-8083BB51FEDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Handlers", "Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj", "{A33550EA-BE6D-498F-8E4C-8083BB51FEDD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.WebApplication", "src\GestaoEscolar\Demo.GestaoEscolar.WebApplication\Demo.GestaoEscolar.WebApplication.csproj", "{4CEE7897-BFBD-4A18-82DC-70C0896DCD69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.WebApplication", "Demo.GestaoEscolar.WebApplication\Demo.GestaoEscolar.WebApplication.csproj", "{4CEE7897-BFBD-4A18-82DC-70C0896DCD69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GestaoEscolar.WebApplication.Test", "Demo.GestaoEscolar.WebApplication.Test\Demo.GestaoEscolar.WebApplication.Test.csproj", "{0A8FE08B-02BF-481E-A887-1A29C35742C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GestaoEscolar.WebApplication.Test", "test\Demo.GestaoEscolar.WebApplication.Test\Demo.GestaoEscolar.WebApplication.Test.csproj", "{0A8FE08B-02BF-481E-A887-1A29C35742C5}"
 EndProject

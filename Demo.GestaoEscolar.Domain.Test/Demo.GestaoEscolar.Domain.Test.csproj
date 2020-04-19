@@ -40,7 +40,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\GestaoEscolar\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj" />
+	  <ProjectReference Include="..\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

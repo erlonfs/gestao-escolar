@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CrossCutting\CrossCutting\CrossCutting.csproj" />
+    <ProjectReference Include="..\Demo.GestaoEscolar.Domain\Demo.GestaoEscolar.Domain.csproj" />
     <ProjectReference Include="..\Demo.GestaoEscolar.Handlers\Demo.GestaoEscolar.Handlers.csproj" />
     <ProjectReference Include="..\Demo.GestaoEscolar.Infra.Dapper\Demo.GestaoEscolar.Infra.Dapper.csproj" />
     <ProjectReference Include="..\Demo.GestaoEscolar.Infra.EF\Demo.GestaoEscolar.Infra.EF.csproj" />
