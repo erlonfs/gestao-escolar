@@ -28,7 +28,6 @@ namespace Demo.GestaoEscolar.WebApplication
 
 		public FakeStartup(IWebHostEnvironment env)
 		{
-			// In ASP.NET Core 3.0 `env` will be an IWebHostEnvironment, not IHostingEnvironment.
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
 				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -97,18 +96,6 @@ namespace Demo.GestaoEscolar.WebApplication
 			{
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", $"Gestão Escolar API V1 {env.EnvironmentName}");
 			});
-
-			//var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
-			//using (var serviceScope = serviceScopeFactory.CreateScope())
-			//{
-			//	var dbContext = serviceScope.ServiceProvider.GetService<AppDbContext>();
-			//	if (dbContext == null)
-			//	{
-			//		throw new NullReferenceException("Cannot get instance of dbContext");
-			//	}
-
-	
-			//}
 		}
 
 		public void ConfigureContainer(ContainerBuilder builder)
