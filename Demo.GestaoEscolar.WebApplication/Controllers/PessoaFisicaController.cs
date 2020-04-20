@@ -18,7 +18,7 @@ namespace Demo.GestaoEscolar.WebApplication.Controllers
 		private readonly IUnitOfWork _unitOfWork;
 		private readonly IPessoaFisicaService _pessoaFisicaService;
 		private readonly IPessoaFisicaFinder _pessoaFisicaFinder;
-	
+
 		public PessoaFisicaController(IUnitOfWork unitOfWork,
 									 IPessoaFisicaService pessoaFisicaService,
 									 IPessoaFisicaFinder pessoaFisicaFinder)
@@ -30,7 +30,7 @@ namespace Demo.GestaoEscolar.WebApplication.Controllers
 
 		[HttpPost]
 		[Route("")]
-		public async Task<Guid> CriarAsync(CriarPessoaFisicaDto dto)
+		public async Task<Guid> CriarAsync([FromBody]CriarPessoaFisicaDto dto)
 		{
 			var id = Guid.NewGuid();
 

@@ -17,7 +17,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Repositories.PessoasFisicas
 
 		public async Task<PessoaFisica> ObterPorCpfAsync(string cpf)
 		{
-			return await _context.PessoaFisica.FirstOrDefaultAsync(x => x.Cpf == cpf);
+			return await _context.PessoaFisica.FirstOrDefaultAsync(x => x.Cpf.Numero == cpf);
 		}
 	}
 }
