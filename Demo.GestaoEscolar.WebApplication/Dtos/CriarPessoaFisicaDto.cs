@@ -9,5 +9,10 @@ namespace Demo.GestaoEscolar.WebApplication.Dtos
 		public string NomeSocial { get; set; }
 		public string Sexo { get; set; }
 		public DateTime DataNascimento { get; set; }
+
+		public CriarPessoaFisicaDto()
+		{
+
+		}
 	}
 }

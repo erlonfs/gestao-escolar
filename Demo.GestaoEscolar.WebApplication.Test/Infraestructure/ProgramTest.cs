@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using CrossCutting;
 using Demo.GestaoEscolar.Domain.Finders;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
+using Demo.GestaoEscolar.Infra.Dapper.Data;
 using Demo.GestaoEscolar.WebApplication.Test.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -53,7 +54,8 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 						  {
 							  builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 							  builder.RegisterType<PessoaFisicaService>().As<IPessoaFisicaService>();
-							  builder.RegisterType<PessaoFisicaFinderFake>().As<IPessoaFisicaFinder>();
+							  builder.RegisterType<PessoaFisicaFinder>().As<IPessoaFisicaFinder>();
+							  builder.RegisterType<MessageBusFake>().As<IMessageBus>();
 						  })
 						  .ConfigureServices(services => services.AddAutofac())
 						  .UseSolutionRelativeContentRoot("Demo.GestaoEscolar.WebApplication")

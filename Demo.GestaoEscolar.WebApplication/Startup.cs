@@ -35,7 +35,7 @@ namespace Demo.GestaoEscolar.WebApplication
 			this.Configuration = builder.Build();
 		}
 
-		public virtual IServiceProvider ConfigureServices(IServiceCollection services)
+		public virtual void ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc(x =>
 			{
@@ -64,7 +64,7 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			DomainEvents.Init(Container.BeginLifetimeScope());
 
-			return new AutofacServiceProvider(Container);
+			//return new AutofacServiceProvider(Container);
 		}
 
 		public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)

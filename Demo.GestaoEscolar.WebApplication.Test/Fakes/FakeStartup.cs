@@ -9,17 +9,19 @@ using Demo.GestaoEscolar.WebApplication.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Data.SqlClient;
 using HandlersAssembly = Demo.GestaoEscolar.Handlers.Foo;
 using InfraDapperAssembly = Demo.GestaoEscolar.Infra.Dapper.Foo;
 using InfraEFAssembly = Demo.GestaoEscolar.Infra.EF.Foo;
 
 namespace Demo.GestaoEscolar.WebApplication
 {
-	public class FakeStartup
+	public class FakeStartup : TestSetup
 	{
 		public IConfiguration Configuration { get; }
 		public IContainer Container { get; private set; }
@@ -50,8 +52,14 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			services.AddDbContext<AppDbContext>(options =>
 			{
-				options.UseSqlServer(Configuration.GetConnectionString("AppDatabase"));
+				options.UseSqlServer(new SqlConnectionStringBuilder
+				{
+					DataSource = @"(LocalDB)\MSSQLLocalDB",
+					InitialCatalog = "GestaoEscolar",
+					IntegratedSecurity = true
+				}.ConnectionString);
 				options.UseLazyLoadingProxies();
+				options.ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning));
 			});
 
 			var builder = new ContainerBuilder();
@@ -79,8 +87,6 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			app.UseRouting();
 
-			//app.UseAuthorization();
-
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllers();
@@ -91,13 +97,25 @@ namespace Demo.GestaoEscolar.WebApplication
 			{
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", $"Gestão Escolar API V1 {env.EnvironmentName}");
 			});
+
+			//var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
+			//using (var serviceScope = serviceScopeFactory.CreateScope())
+			//{
+			//	var dbContext = serviceScope.ServiceProvider.GetService<AppDbContext>();
+			//	if (dbContext == null)
+			//	{
+			//		throw new NullReferenceException("Cannot get instance of dbContext");
+			//	}
+
+	
+			//}
 		}
 
 		public void ConfigureContainer(ContainerBuilder builder)
 		{
 			builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
 			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-			builder.RegisterType<MessageBus>().As<IMessageBus>();
+			builder.RegisterType<MessageBusFake>().As<IMessageBus>();
 
 			builder.RegisterType<MatriculaService>().As<IMatriculaService>();
 
