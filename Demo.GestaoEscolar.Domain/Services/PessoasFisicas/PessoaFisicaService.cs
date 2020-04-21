@@ -21,7 +21,7 @@ namespace Demo.GestaoEscolar.Domain.Services.PessoasFisicas
 			await _pessoasFisicaRepository.AddAsync(pessoaFisica);
 		}
 
-		public async Task AlterarCpfAsync(Guid id,string cpf)
+		public async Task AlterarCpfAsync(Guid id, string cpf)
 		{
 			var pessoaFisica = await _pessoasFisicaRepository.GetByEntityIdAsync(id);
 
