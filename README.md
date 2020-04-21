@@ -35,8 +35,17 @@ Project is created with:
 * FluentAssertions
 * AutoFixture
 
-![Recordit GIF](http://g.recordit.co/lPV3SBtsRK.gif)
-
+**API methods**
+POST ​/api​/alunos​/matricular
+GET ​/api​/alunos
+PUT ​/api​/alunos​/{id}​/rematricular
+PUT ​/api​/alunos​/{id}​/transferir\
+POST ​/api​/escolas
+GET ​/api​/escolas
+POST ​/api​/escolas​/{id}​/sala
+POST ​/api​/pessoas-fisicas
+GET ​/api​/pessoas-fisicas
+PUT ​/api​/pessoas-fisicas​/{id}​/alterar-cpf
 
 **Running the tests**
 
