@@ -4,7 +4,7 @@
 
 **Running the tests**
 
-![Recordit GIF](http://g.recordit.co/OD0rioYmKh.gif)
+![Recordit GIF](http://g.recordit.co/oHwRvRcPRf.gif)
 
 
 
