@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using CrossCutting;
 using Demo.GestaoEscolar.Domain.Finders;
+using Demo.GestaoEscolar.Domain.Services.Escolas;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
 using Demo.GestaoEscolar.Infra.Dapper.Data;
 using Demo.GestaoEscolar.WebApplication.Test.Extensions;
@@ -55,6 +56,8 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 							  builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 							  builder.RegisterType<PessoaFisicaService>().As<IPessoaFisicaService>();
 							  builder.RegisterType<PessoaFisicaFinder>().As<IPessoaFisicaFinder>();
+							  builder.RegisterType<EscolaService>().As<IEscolaService>();
+							  builder.RegisterType<EscolaFinder>().As<IEscolaFinder>();
 							  builder.RegisterType<MessageBusFake>().As<IMessageBus>();
 						  })
 						  .ConfigureServices(services => services.AddAutofac())
