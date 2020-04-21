@@ -33,9 +33,9 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 		{
 			_dto = new PessoaFisicaDto
 			{
-				Cpf = "03443703135",
-				DataNascimento = new DateTime(1990, 04, 02),
-				Nome = "Erlon",
+				Cpf = "30839452055",
+				DataNascimento = new DateTime(2005, 04, 02),
+				Nome = "Lucca Ricardo Porto",
 				Sexo = "M"
 			};
 

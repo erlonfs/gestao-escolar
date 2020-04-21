@@ -28,7 +28,7 @@ namespace Demo.GestaoEscolar.WebApplication.Controllers
 		}
 
 		[HttpPost]
-		[Route("/matricular")]
+		[Route("matricular")]
 		public async Task<Guid> MatricularAsync(Guid pessoaFisicaId, Guid responsavelId, Guid escolaId, Guid salaId)
 		{
 			var id = Guid.NewGuid();
