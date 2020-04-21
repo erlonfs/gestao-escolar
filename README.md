@@ -36,16 +36,19 @@ Project is created with:
 * AutoFixture
 
 **API methods**
-POST ​/api​/alunos​/matricular
-GET ​/api​/alunos
-PUT ​/api​/alunos​/{id}​/rematricular
-PUT ​/api​/alunos​/{id}​/transferir\
-POST ​/api​/escolas
-GET ​/api​/escolas
-POST ​/api​/escolas​/{id}​/sala
-POST ​/api​/pessoas-fisicas
-GET ​/api​/pessoas-fisicas
-PUT ​/api​/pessoas-fisicas​/{id}​/alterar-cpf
+
+| Route  | Method   | 
+|---|---|
+|​/api​/alunos​/matricular  | POST  |
+|​/api​/alunos|GET|
+|​/api​/alunos​/{id}​/rematricular|PUT|
+|​/api​/alunos​/{id}​/transferir|PUT|
+|​/api​/escolas|POST|
+|​/api​/escolas|GET|
+|​/api​/escolas​/{id}​/sala|POST|
+|​/api​/pessoas-fisicas|POST|
+|​/api​/pessoas-fisicas|GET|
+|​/api​/pessoas-fisicas​/{id}​/alterar-cpf|PUT|
 
 **Running the tests**
 
