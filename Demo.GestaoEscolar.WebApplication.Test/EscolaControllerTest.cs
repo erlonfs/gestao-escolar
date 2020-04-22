@@ -14,7 +14,6 @@ using Xunit.Extensions.Ordering;
 
 namespace Demo.GestaoEscolar.WebApplication.Test
 {
-	[Order(2)]
 	public class EscolaControllerTest : TestBase
 	{
 		private HttpClient _httpClient;

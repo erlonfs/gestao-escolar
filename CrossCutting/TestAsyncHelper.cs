@@ -7,8 +7,11 @@ namespace CrossCutting
 	{
 		public static void CallSync(Action target)
 		{
-			var task = new Task(target);
-			task.RunSynchronously();
+
+			Task.Run(() => target()).Wait();
+
+			//var task = new Task(target);
+			//task.RunSynchronously();
 		}
 	}
 }
