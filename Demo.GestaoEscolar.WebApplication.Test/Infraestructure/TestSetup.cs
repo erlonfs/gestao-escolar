@@ -9,8 +9,13 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 {
 	public class TestSetup : IDisposable
 	{
+		private static readonly int _timeInSecondsFilesDelete = 30;
+
+
 		public TestSetup()
 		{
+			IDBNameDynamicallyTestIntegration = Guid.NewGuid().ToString("N");
+			DeleteFilesDatabaseLastsTests();
 			DestroyDatabase();
 			CreateDatabase();
 			CreateSchema();
@@ -26,8 +31,8 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 		private static void CreateDatabase()
 		{
 			ExecuteSqlCommand(Master, $@"
-                CREATE DATABASE [GestaoEscolar]
-                ON (NAME = 'GestaoEscolar',
+                CREATE DATABASE [{DBNameDynamicallyTestIntegration}]
+                ON (NAME = '{DBNameDynamicallyTestIntegration}',
                 FILENAME = '{Filename}')");
 		}
 
@@ -137,7 +142,6 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 			INSERT INTO GES.AlunoSituacao(Id, Nome) VALUES(3, 'Transferido');
 			INSERT INTO GES.AlunoSituacao(Id, Nome) VALUES(4, 'Expulso');
 
-			--SalaTurno
 			INSERT INTO GES.SalaTurno(Id, Nome) VALUES(1, 'Matutino');
 			INSERT INTO GES.SalaTurno(Id, Nome) VALUES(2, 'Vespertino');
 			INSERT INTO GES.SalaTurno(Id, Nome) VALUES(3, 'Noturno');");
@@ -145,16 +149,16 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 
 		private static void DestroyDatabase()
 		{
-			var fileNames = ExecuteSqlQuery(Master, @"
+			var fileNames = ExecuteSqlQuery(Master, $@"
                 SELECT [physical_name] FROM [sys].[master_files]
-                WHERE [database_id] = DB_ID('GestaoEscolar')",
+                WHERE [database_id] = DB_ID('{DBNameDynamicallyTestIntegration}')",
 				row => (string)row["physical_name"]);
 
 			if (fileNames.Any())
 			{
-				ExecuteSqlCommand(Master, @"
-                    ALTER DATABASE [GestaoEscolar] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-                    EXEC sp_detach_db 'GestaoEscolar'");
+				ExecuteSqlCommand(Master, $@"
+                    ALTER DATABASE [{DBNameDynamicallyTestIntegration}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                    EXEC sp_detach_db '{DBNameDynamicallyTestIntegration}'");
 
 				fileNames.ForEach(File.Delete);
 			}
@@ -211,13 +215,42 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 			new SqlConnectionStringBuilder
 			{
 				DataSource = @"(LocalDB)\MSSQLLocalDB",
-				InitialCatalog = "GestaoEscolar",
+				InitialCatalog = DBNameDynamicallyTestIntegration,
 				IntegratedSecurity = true
 			};
+
+		private static string IDBNameDynamicallyTestIntegration;
 
 		private static string Filename => Path.Combine(
 			Path.GetDirectoryName(
 				typeof(TestSetup).GetTypeInfo().Assembly.Location),
-			"GestaoEscolar.mdf");
+			$"GestaoEscolar{IDBNameDynamicallyTestIntegration}.mdf");
+
+
+		protected static string DBNameDynamicallyTestIntegration => $"GestaoEscolar{IDBNameDynamicallyTestIntegration}";
+
+
+		public void DeleteFilesDatabaseLastsTests()
+		{
+			string[] files = Directory.GetFiles(Path.GetDirectoryName(
+				typeof(TestSetup).GetTypeInfo().Assembly.Location));
+
+			foreach (string file in files)
+			{
+				var fi = new FileInfo(file);
+
+				if(!(new List<string>() {".ldf", ".mdf" }.Contains(fi.Extension)))
+				{
+					continue;
+				}
+
+				if (fi.LastAccessTime.AddSeconds(_timeInSecondsFilesDelete) > DateTime.Now)
+				{
+					continue;
+				}
+
+				fi.Delete();
+			}
+		}
 	}
 }

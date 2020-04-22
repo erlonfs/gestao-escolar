@@ -13,7 +13,6 @@ using Xunit.Extensions.Ordering;
 
 namespace Demo.GestaoEscolar.WebApplication.Test
 {
-	[Order(1)]
 	public class PessoaFisicaControllerTest : TestBase
 	{
 		private HttpClient _httpClient;
