@@ -15,8 +15,9 @@
     * Integrations tests
 * SOLID Concepts
 * Inversion of control principles (IoC)
-* Unit of work (WOW)
+* Unit of work
 * Message BUS
+* CI/CD continuous integration/continuous delivery
 
 ### Technologies
 Project is created with:
@@ -34,6 +35,7 @@ Project is created with:
 * XUnit
 * FluentAssertions
 * AutoFixture
+* CircleCI
 
 **API methods**
 
