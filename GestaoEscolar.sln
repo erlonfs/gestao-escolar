@@ -13,8 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{C9D36A01-6416-4693-9BA7-036479BDC1B5}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\001-create-schema.sql = scripts\001-create-schema.sql
-		scripts\002-create-table.sql = scripts\002-create-table.sql
+		scripts\001-create-schemas.sql = scripts\001-create-schemas.sql
+		scripts\002-create-tables.sql = scripts\002-create-tables.sql
 		scripts\003-insert-data.sql = scripts\003-insert-data.sql
 	EndProjectSection
 EndProject
