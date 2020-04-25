@@ -11,10 +11,9 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 	{
 		private static readonly int _timeInSecondsFilesDelete = 30;
 
-
 		public TestSetup()
 		{
-			IDBNameDynamicallyTestIntegration = Guid.NewGuid().ToString("N");
+			DBTestIntegrationNameSufix = Guid.NewGuid().ToString("N");
 			DeleteFilesDatabaseLastsTests();
 			DestroyDatabase();
 			CreateDatabase();
@@ -31,8 +30,8 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 		private static void CreateDatabase()
 		{
 			ExecuteSqlCommand(Master, $@"
-                CREATE DATABASE [{DBNameDynamicallyTestIntegration}]
-                ON (NAME = '{DBNameDynamicallyTestIntegration}',
+                CREATE DATABASE [{DBNameTestIntegration}]
+                ON (NAME = '{DBNameTestIntegration}',
                 FILENAME = '{Filename}')");
 		}
 
@@ -151,14 +150,14 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 		{
 			var fileNames = ExecuteSqlQuery(Master, $@"
                 SELECT [physical_name] FROM [sys].[master_files]
-                WHERE [database_id] = DB_ID('{DBNameDynamicallyTestIntegration}')",
+                WHERE [database_id] = DB_ID('{DBNameTestIntegration}')",
 				row => (string)row["physical_name"]);
 
 			if (fileNames.Any())
 			{
 				ExecuteSqlCommand(Master, $@"
-                    ALTER DATABASE [{DBNameDynamicallyTestIntegration}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-                    EXEC sp_detach_db '{DBNameDynamicallyTestIntegration}'");
+                    ALTER DATABASE [{DBNameTestIntegration}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                    EXEC sp_detach_db '{DBNameTestIntegration}'");
 
 				fileNames.ForEach(File.Delete);
 			}
@@ -215,19 +214,19 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 			new SqlConnectionStringBuilder
 			{
 				DataSource = @"(LocalDB)\MSSQLLocalDB",
-				InitialCatalog = DBNameDynamicallyTestIntegration,
+				InitialCatalog = DBNameTestIntegration,
 				IntegratedSecurity = true
 			};
 
-		private static string IDBNameDynamicallyTestIntegration;
+		private static string DBTestIntegrationNameSufix;
 
 		private static string Filename => Path.Combine(
 			Path.GetDirectoryName(
 				typeof(TestSetup).GetTypeInfo().Assembly.Location),
-			$"GestaoEscolar{IDBNameDynamicallyTestIntegration}.mdf");
+			$"GestaoEscolar{DBTestIntegrationNameSufix}.mdf");
 
 
-		protected static string DBNameDynamicallyTestIntegration => $"GestaoEscolar{IDBNameDynamicallyTestIntegration}";
+		protected static string DBNameTestIntegration => $"GestaoEscolar{DBTestIntegrationNameSufix}";
 
 
 		public void DeleteFilesDatabaseLastsTests()

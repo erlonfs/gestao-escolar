@@ -54,7 +54,7 @@ namespace Demo.GestaoEscolar.WebApplication
 				options.UseSqlServer(new SqlConnectionStringBuilder
 				{
 					DataSource = @"(LocalDB)\MSSQLLocalDB",
-					InitialCatalog = DBNameDynamicallyTestIntegration,
+					InitialCatalog = DBNameTestIntegration,
 					IntegratedSecurity = true
 				}.ConnectionString);
 				options.UseLazyLoadingProxies();
@@ -123,7 +123,7 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			builder.RegisterType<AppConnectionString>()
 				.AsSelf()
-				.WithParameter(new TypedParameter(typeof(string), $"Server=(localdb)\\mssqllocaldb;Database={DBNameDynamicallyTestIntegration};Trusted_Connection=True;ConnectRetryCount=0"));
+				.WithParameter(new TypedParameter(typeof(string), $"Server=(localdb)\\mssqllocaldb;Database={DBNameTestIntegration};Trusted_Connection=True;ConnectRetryCount=0"));
 
 		}
 	}
