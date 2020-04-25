@@ -1,7 +1,8 @@
 # Gestao Escolar
 
 [![CircleCI](https://circleci.com/gh/erlonfs/gestao-escolar.svg?style=shield)](https://circleci.com/gh/erlonfs/demo-gestao-escolar) 
-[![Issues](https://img.shields.io/github/issues/erlonfs/gestao-escolar)](https://github.com/erlonfs/gestao-escolar/issues)
+[![Build Status](https://travis-ci.org/erlonfs/gestao-escolar.svg?branch=master)](https://travis-ci.org/erlonfs/gestao-escolar)
+[![Coverage Status](https://coveralls.io/repos/github/erlonfs/gestao-escolar/badge.svg)](https://coveralls.io/github/erlonfs/gestao-escolar)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ### Concepts
