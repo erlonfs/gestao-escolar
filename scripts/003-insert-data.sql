@@ -1,6 +1,3 @@
-USE GestaoEscolar;
-GO
-
 --AlunoSituacao
 INSERT INTO GES.AlunoSituacao(Id, Nome) VALUES(1, 'Não Matriculado');
 INSERT INTO GES.AlunoSituacao(Id, Nome) VALUES(2, 'Matriculado');

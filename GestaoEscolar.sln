@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{C9D36A01-6416-4693-9BA7-036479BDC1B5}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\001-create-database.sql = scripts\001-create-database.sql
+		scripts\001-create-schema.sql = scripts\001-create-schema.sql
 		scripts\002-create-table.sql = scripts\002-create-table.sql
 		scripts\003-insert-data.sql = scripts\003-insert-data.sql
 	EndProjectSection
@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.Handlers
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.WebApplication", "Demo.GestaoEscolar.WebApplication\Demo.GestaoEscolar.WebApplication.csproj", "{4CEE7897-BFBD-4A18-82DC-70C0896DCD69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.GestaoEscolar.WebApplication.Test", "Demo.GestaoEscolar.WebApplication.Test\Demo.GestaoEscolar.WebApplication.Test.csproj", "{0A8FE08B-02BF-481E-A887-1A29C35742C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.GestaoEscolar.WebApplication.Test", "Demo.GestaoEscolar.WebApplication.Test\Demo.GestaoEscolar.WebApplication.Test.csproj", "{0A8FE08B-02BF-481E-A887-1A29C35742C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -26,7 +26,7 @@ namespace Demo.GestaoEscolar.WebApplication
 		public IConfiguration Configuration { get; }
 		public IContainer Container { get; private set; }
 
-		public FakeStartup(IWebHostEnvironment env)
+		public FakeStartup(IWebHostEnvironment env) : base(env)
 		{
 			var builder = new ConfigurationBuilder()
 				.SetBasePath(env.ContentRootPath)
