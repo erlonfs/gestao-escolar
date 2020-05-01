@@ -19,12 +19,12 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 		public TestSetup(IWebHostEnvironment env)
 		{
 			_applicationPhysicalPath = env.ContentRootPath;
-			DBTestIntegrationNameSufix = Guid.NewGuid().ToString("N");
+			DBTestIntegrationNameSufix = "Test";
 
-			DeleteFilesDatabaseLastsTests();
 			DestroyDatabase();
 			CreateDatabase();
 			RunScriptsFiles();
+
 		}
 
 		public void Dispose()
@@ -65,6 +65,7 @@ namespace Demo.GestaoEscolar.WebApplication.Test
                     EXEC sp_detach_db '{DBNameTestIntegration}'");
 
 				fileNames.ForEach(File.Delete);
+
 			}
 		}
 
