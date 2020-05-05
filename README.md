@@ -1,4 +1,4 @@
-# Gestao Escolar
+## Gestao Escolar
 
 [![CircleCI](https://circleci.com/gh/erlonfs/gestao-escolar.svg?style=shield)](https://circleci.com/gh/erlonfs/gestao-escolar) 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
