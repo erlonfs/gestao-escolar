@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Linq;
 using HandlersAssembly = Demo.GestaoEscolar.Handlers.Foo;
 using InfraDapperAssembly = Demo.GestaoEscolar.Infra.Dapper.Foo;
@@ -24,15 +23,9 @@ namespace Demo.GestaoEscolar.WebApplication
 		public IConfiguration Configuration { get; }
 		public IContainer Container { get; private set; }
 
-		public Startup(IWebHostEnvironment env)
+		public Startup(IConfiguration configuration)
 		{
-			// In ASP.NET Core 3.0 `env` will be an IWebHostEnvironment, not IHostingEnvironment.
-			var builder = new ConfigurationBuilder()
-				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-				.AddEnvironmentVariables();
-			this.Configuration = builder.Build();
+			Configuration = configuration;
 		}
 
 		public virtual void ConfigureServices(IServiceCollection services)
@@ -63,22 +56,20 @@ namespace Demo.GestaoEscolar.WebApplication
 			Container = builder.Build();
 
 			DomainEvents.Init(Container.BeginLifetimeScope());
-
-			//return new AutofacServiceProvider(Container);
 		}
 
 		public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.UseMvc();
-
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
+			app.UseHttpsRedirection();
+
 			app.UseRouting();
 
-			//app.UseAuthorization();
+			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{

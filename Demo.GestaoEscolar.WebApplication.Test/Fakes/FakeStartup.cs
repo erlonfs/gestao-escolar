@@ -13,7 +13,6 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Data.SqlClient;
 using HandlersAssembly = Demo.GestaoEscolar.Handlers.Foo;
 using InfraDapperAssembly = Demo.GestaoEscolar.Infra.Dapper.Foo;
@@ -26,14 +25,9 @@ namespace Demo.GestaoEscolar.WebApplication
 		public IConfiguration Configuration { get; }
 		public IContainer Container { get; private set; }
 
-		public FakeStartup(IWebHostEnvironment env) : base(env)
+		public FakeStartup(IWebHostEnvironment env, IConfiguration configuration) : base(env)
 		{
-			var builder = new ConfigurationBuilder()
-				.SetBasePath(env.ContentRootPath)
-				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-				.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-				.AddEnvironmentVariables();
-			this.Configuration = builder.Build();
+			Configuration = configuration;
 		}
 
 		public void ConfigureServices(IServiceCollection services)
@@ -77,14 +71,16 @@ namespace Demo.GestaoEscolar.WebApplication
 
 		public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			app.UseMvc();
-
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
+			app.UseHttpsRedirection();
+
 			app.UseRouting();
+
+			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
