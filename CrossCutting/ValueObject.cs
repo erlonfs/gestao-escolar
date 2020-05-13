@@ -85,8 +85,13 @@ namespace CrossCutting
 
 		public static bool operator ==(ValueObject<T> x, ValueObject<T> y)
 		{
-			return x.Equals(y);
-		}
+			if (object.ReferenceEquals(x, y))
+			{
+				return true;
+			}
+
+			return Equals(x, y);
+}
 
 		public static bool operator !=(ValueObject<T> x, ValueObject<T> y)
 		{
