@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Demo.GestaoEscolar.Infra.Dapper.Data
+namespace Demo.GestaoEscolar.Infra.Dapper.Finders
 {
 	public class AlunoFinder : IAlunoFinder
 	{
