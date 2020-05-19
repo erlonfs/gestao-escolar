@@ -5,7 +5,7 @@ using Demo.GestaoEscolar.Domain.Finders;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Domain.Services.Escolas;
 using Demo.GestaoEscolar.Domain.Services.PessoasFisicas;
-using Demo.GestaoEscolar.Infra.Dapper.Data;
+using Demo.GestaoEscolar.Infra.Dapper.Finders;
 using Demo.GestaoEscolar.WebApplication.Test.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;

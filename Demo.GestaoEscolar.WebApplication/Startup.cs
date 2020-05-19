@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using DomainServicesAssembly = Demo.GestaoEscolar.Domain.Bar;
 using HandlersAssembly = Demo.GestaoEscolar.Handlers.Foo;
 using InfraDapperAssembly = Demo.GestaoEscolar.Infra.Dapper.Foo;
 using InfraEFAssembly = Demo.GestaoEscolar.Infra.EF.Foo;
@@ -95,7 +96,7 @@ namespace Demo.GestaoEscolar.WebApplication
 					.Where(t => t.Name.EndsWith("Repository"))
 					.AsImplementedInterfaces();
 
-			builder.RegisterAssemblyTypes(typeof(InfraEFAssembly).Assembly)
+			builder.RegisterAssemblyTypes(typeof(DomainServicesAssembly).Assembly)
 					.Where(t => t.Name.EndsWith("Service"))
 					.AsImplementedInterfaces();
 
