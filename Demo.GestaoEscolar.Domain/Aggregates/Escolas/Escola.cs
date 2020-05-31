@@ -15,6 +15,8 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 
 		public virtual HashSet<Sala> Salas { get; private set; } = new HashSet<Sala>();
 
+		public IDomainEventsBag DomainEventsBag { get; set; }
+
 		protected Escola()
 		{
 			

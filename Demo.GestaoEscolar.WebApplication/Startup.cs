@@ -1,6 +1,10 @@
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Infra.Dapper;
 using Demo.GestaoEscolar.Infra.EF;
@@ -55,7 +59,10 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			Container = builder.Build();
 
-			DomainEvents.Init(Container.BeginLifetimeScope());
+			var domainEventsBag = Container.Resolve<IDomainEventsBag>();
+
+			builder.RegisterType<PessoaFisica>().WithProperty("DomainEventsBag", domainEventsBag);
+
 		}
 
 		public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -64,6 +71,8 @@ namespace Demo.GestaoEscolar.WebApplication
 			{
 				app.UseDeveloperExceptionPage();
 			}
+
+			app.UseMvc();
 
 			app.UseHttpsRedirection();
 
@@ -88,14 +97,16 @@ namespace Demo.GestaoEscolar.WebApplication
 			builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
 			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 			builder.RegisterType<MessageBus>().As<IMessageBus>();
-
 			builder.RegisterType<MatriculaService>().As<IMatriculaService>();
+
+			builder.Register(c => new DomainEventsBag()).As<IDomainEventsBag>();
+			builder.RegisterType<PessoaFisica>().PropertiesAutowired();
 
 			builder.RegisterAssemblyTypes(typeof(InfraEFAssembly).Assembly)
 					.Where(t => t.Name.EndsWith("Repository"))
 					.AsImplementedInterfaces();
 
-			builder.RegisterAssemblyTypes(typeof(InfraEFAssembly).Assembly)
+			builder.RegisterAssemblyTypes(typeof(Domain.Bar).Assembly)
 					.Where(t => t.Name.EndsWith("Service"))
 					.AsImplementedInterfaces();
 

@@ -1,6 +1,10 @@
 ﻿using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Infra.Dapper;
 using Demo.GestaoEscolar.Infra.EF;
@@ -63,8 +67,6 @@ namespace Demo.GestaoEscolar.WebApplication
 
 			Container = builder.Build();
 
-			DomainEvents.Init(Container.BeginLifetimeScope());
-
 			new AutofacServiceProvider(Container.BeginLifetimeScope());
 
 		}
@@ -99,8 +101,13 @@ namespace Demo.GestaoEscolar.WebApplication
 			builder.RegisterType<PessoaFisicaController>().PropertiesAutowired();
 			builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 			builder.RegisterType<MessageBusFake>().As<IMessageBus>();
-
+			builder.RegisterType<DomainEventsBag>().As<IDomainEventsBag>();
 			builder.RegisterType<MatriculaService>().As<IMatriculaService>();
+
+			builder.RegisterType<PessoaFisica>().As<IDomainEventsBag>().PropertiesAutowired();
+
+			builder.RegisterType<Escola>().PropertiesAutowired();
+			builder.RegisterType<Aluno>().PropertiesAutowired();
 
 			builder.RegisterAssemblyTypes(typeof(InfraEFAssembly).Assembly)
 					.Where(t => t.Name.EndsWith("Repository"))

@@ -16,6 +16,8 @@ namespace Demo.GestaoEscolar.Infra.EF.Mappings
 			builder.Property(x => x.DataCriacao);
 			builder.Property(x => x.Nome);
 
+			builder.Ignore(x => x.DomainEventsBag);
+
 		}
 	}
 }

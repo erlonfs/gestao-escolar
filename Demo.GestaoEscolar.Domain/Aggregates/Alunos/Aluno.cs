@@ -19,6 +19,8 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 		public int Matricula { get; private set; }
 		public int SituacaoId { get; private set; }
 
+		public IDomainEventsBag DomainEventsBag { get; set; }
+
 		protected Aluno()
 		{
 
@@ -33,7 +35,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 			Matricula = matricula;
 			SituacaoId = (int)AlunoSituacao.Matriculado;
 
-			RaiseEvent(new AlunoMatriculado(EntityId, this));
+			DomainEventsBag.Raise(new AlunoMatriculado(EntityId, this));
 
 		}
 
@@ -42,14 +44,14 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 			Responsavel = responsavel;
 			SituacaoId = (int)AlunoSituacao.Matriculado;
 
-			RaiseEvent(new AlunoRematriculado(EntityId, this));
+			DomainEventsBag.Raise(new AlunoRematriculado(EntityId, this));
 		}
 
 		public void Transferir()
 		{
 			SituacaoId = (int)AlunoSituacao.Transferido;
 
-			RaiseEvent(new AlunoTransferido(EntityId, this));
+			DomainEventsBag.Raise(new AlunoTransferido(EntityId, this));
 		}
 	}
 }

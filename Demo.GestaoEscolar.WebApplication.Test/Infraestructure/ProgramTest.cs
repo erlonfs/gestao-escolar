@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using CrossCutting;
+using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
+using Demo.GestaoEscolar.Domain.Aggregates.Escolas;
+using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.Finders;
 using Demo.GestaoEscolar.Domain.Services.Alunos;
 using Demo.GestaoEscolar.Domain.Services.Escolas;
@@ -62,6 +65,13 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 							  builder.RegisterType<AlunoFinder>().As<IAlunoFinder>();
 							  builder.RegisterType<AlunoService>().As<IAlunoService>();
 							  builder.RegisterType<MessageBusFake>().As<IMessageBus>();
+
+							  builder.RegisterType<DomainEventsBag>().As<IDomainEventsBag>();
+
+							  builder.RegisterType<PessoaFisica>().As<IDomainEventsBag>().PropertiesAutowired();
+
+							  builder.RegisterType<Escola>().PropertiesAutowired();
+							  builder.RegisterType<Aluno>().PropertiesAutowired();
 						  })
 						  .ConfigureServices(services => services.AddAutofac())
 						  .UseSolutionRelativeContentRoot("Demo.GestaoEscolar.WebApplication")

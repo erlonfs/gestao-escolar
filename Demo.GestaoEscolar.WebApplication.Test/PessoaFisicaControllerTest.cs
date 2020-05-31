@@ -38,13 +38,23 @@ namespace Demo.GestaoEscolar.WebApplication.Test
 				Sexo = "M"
 			};
 
-			var response = await _httpClient.PostAsJsonAsync("api/pessoas-fisicas/", _dto);
-			var result = await response.Content.ReadAsStringAsync();
+			try
+			{
 
-			_pessoaFisicaId = JsonConvert.DeserializeObject<Guid>(result);
 
-			_pessoaFisicaId.Should().NotBeEmpty();
-			response.StatusCode.Should().Be(HttpStatusCode.OK);
+				var response = await _httpClient.PostAsJsonAsync("api/pessoas-fisicas/", _dto);
+				var result = await response.Content.ReadAsStringAsync();
+
+				_pessoaFisicaId = JsonConvert.DeserializeObject<Guid>(result);
+
+				_pessoaFisicaId.Should().NotBeEmpty();
+				response.StatusCode.Should().Be(HttpStatusCode.OK);
+			}
+			catch (Exception e)
+			{
+
+				throw e;
+			}
 		}
 
 		[Fact, Order(2)]

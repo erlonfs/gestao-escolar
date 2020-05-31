@@ -11,12 +11,15 @@ namespace Demo.GestaoEscolar.WebApplication
 	{
 		private readonly DbContext _dbContext;
 		private readonly IMessageBus _messageBus;
+		private readonly IDomainEventsBag _domainEventsBag;
 
 		public UnitOfWork(AppDbContext dbContext,
-						 IMessageBus messageBus)
+						 IMessageBus messageBus,
+						 IDomainEventsBag domainEventsBag)
 		{
 			_dbContext = dbContext;
 			_messageBus = messageBus;
+			_domainEventsBag = domainEventsBag;
 		}
 
 		public async Task CommitAsync()
@@ -36,12 +39,10 @@ namespace Demo.GestaoEscolar.WebApplication
 
 						transaction.Commit();
 
-						foreach (var e in DomainEvents.GetEvents())
+						foreach (var e in _domainEventsBag.GetEvents())
 						{
 							await _messageBus.PublishAsync(e);
 						}
-
-						DomainEvents.ClearEvents();
 
 					}
 					catch (Exception)

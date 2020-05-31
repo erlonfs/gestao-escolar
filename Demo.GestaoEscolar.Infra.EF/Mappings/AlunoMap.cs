@@ -19,6 +19,7 @@ namespace Demo.GestaoEscolar.Infra.EF.Mappings
 			builder.Property(x => x.PessoaFisicaId);
 			builder.Property(x => x.ResponsavelId);
 			builder.Property(x => x.SituacaoId);
+			builder.Ignore(x => x.DomainEventsBag);
 			
 		}
 	}

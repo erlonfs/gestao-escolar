@@ -25,6 +25,8 @@ namespace Demo.GestaoEscolar.Infra.EF.Mappings
 			{
 				a.Property(p => p.Numero).HasColumnName("Cpf");
 			});
+
+			builder.Ignore(x => x.DomainEventsBag);
 		}
 	}
 }
