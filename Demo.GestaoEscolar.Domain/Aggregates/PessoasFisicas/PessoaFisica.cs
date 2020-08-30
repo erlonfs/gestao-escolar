@@ -2,7 +2,9 @@
 using Demo.GestaoEscolar.Agregates.PessoasFisicas;
 using Demo.GestaoEscolar.Domain.ValueObjects;
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Demo.GestaoEscolar.Domain.Test")]
 namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 {
 	public class PessoaFisica : Aggregate<Guid>
@@ -21,7 +23,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 
 		}
 
-		public PessoaFisica(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
+		internal PessoaFisica(Guid id, string nome, string cpf, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
 			EntityId = id;
 			DataCriacao = DateTime.Now;
@@ -36,7 +38,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 
 		}
 
-		public void Alterar(string nome, string nomeSocial, string sexo, DateTime dataNascimento)
+		internal void Alterar(string nome, string nomeSocial, string sexo, DateTime dataNascimento)
 		{
 			Nome = nome;
 			NomeSocial = nomeSocial;
@@ -47,7 +49,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas
 
 		}
 
-		public void AlterarCpf(string novoCpf)
+		internal void AlterarCpf(string novoCpf)
 		{
 			Cpf = new Cpf(novoCpf);
 

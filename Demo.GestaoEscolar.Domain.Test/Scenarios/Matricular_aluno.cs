@@ -46,7 +46,7 @@ namespace Demo.GestaoEscolar.Domain.Test.Scenarios
 			_alunoId = _fixture.Create<Guid>();
 			_salaId = _fixture.Create<Guid>();
 			_salaFaseAno = _fixture.Create<string>();
-			_escola = _fixture.Create<Escola>();
+			_escola = EscolaStub.EscolaValida;
 
 			_pessoaFisica = PessoaFisicaStub.PessoaMenorDeIdade;
 			_responsavel = PessoaFisicaStub.PessoaMaiorDeIdade;
