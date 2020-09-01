@@ -2,7 +2,9 @@
 using Demo.GestaoEscolar.Agregates.Alunos;
 using Demo.GestaoEscolar.Domain.Aggregates.PessoasFisicas;
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Demo.GestaoEscolar.Domain.Test")]
 namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 {
 	public class Aluno : Aggregate<Guid>
@@ -24,7 +26,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 
 		}
 
-		public Aluno(Guid id, PessoaFisica pessoaFisica, PessoaFisica responsavel, int matricula)
+		internal Aluno(Guid id, PessoaFisica pessoaFisica, PessoaFisica responsavel, int matricula)
 		{
 			EntityId = id;
 			DataCriacao = DateTime.Now;
@@ -37,7 +39,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 
 		}
 
-		public void Rematricular(PessoaFisica responsavel)
+		internal void Rematricular(PessoaFisica responsavel)
 		{
 			Responsavel = responsavel;
 			SituacaoId = (int)AlunoSituacao.Matriculado;
@@ -45,7 +47,7 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Alunos
 			RaiseEvent(new AlunoRematriculado(EntityId, this));
 		}
 
-		public void Transferir()
+		internal void Transferir()
 		{
 			SituacaoId = (int)AlunoSituacao.Transferido;
 

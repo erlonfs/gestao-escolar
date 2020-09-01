@@ -3,7 +3,9 @@ using Demo.GestaoEscolar.Domain.Aggregates.Alunos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Demo.GestaoEscolar.Domain.Test")]
 namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 {
     public class Escola : Aggregate<Guid>
@@ -20,25 +22,25 @@ namespace Demo.GestaoEscolar.Domain.Aggregates.Escolas
 			
 		}
 
-		public Escola(Guid id, string nome)
+		internal Escola(Guid id, string nome)
 		{
 			EntityId = id;
 			DataCriacao = DateTime.Now;
 			Nome = nome;
 		}
 
-		public void AdicionarSala(Guid salaId, string faseAno, Turno turno)
+		internal void AdicionarSala(Guid salaId, string faseAno, Turno turno)
 		{
 			Salas.Add(new Sala(salaId, faseAno, turno));
 		}
 
-		public void AdicionarAluno(Guid salaId, Aluno aluno)
+		internal void AdicionarAluno(Guid salaId, Aluno aluno)
 		{
 			var sala = Salas.SingleOrDefault(x => x.EntityId == salaId);
 			sala.AdicionarAluno(aluno);
 		}
 
-		public void RemoverAluno(Guid salaId, Aluno aluno)
+		internal void RemoverAluno(Guid salaId, Aluno aluno)
 		{
 			var sala = Salas.SingleOrDefault(x => x.EntityId == salaId);
 			sala.RemoverAluno(aluno);
